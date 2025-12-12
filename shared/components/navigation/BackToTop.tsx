@@ -46,10 +46,22 @@ export default function BackToTop() {
     const desktopBottomBar = document.getElementById('main-bottom-bar');
 
     const computeOffset = () => {
-      const topBarHeight = topBar?.offsetHeight ?? 0;
-      const desktopBottomBarHeight = desktopBottomBar?.offsetHeight ?? 0;
       const gutter = 16;
-      setBottomOffset(topBarHeight + desktopBottomBarHeight + gutter);
+
+      const topBarRect = topBar?.getBoundingClientRect();
+      const topBarVisible = !!topBarRect && topBarRect.height > 0;
+
+      // Prefer TopBar if present/visible: place button above its top edge.
+      // This accounts for mobile layouts where TopBar is offset upward.
+      if (topBarVisible) {
+        const topBarTopFromViewportBottom = window.innerHeight - topBarRect.top;
+        setBottomOffset(Math.max(gutter, topBarTopFromViewportBottom + gutter));
+        return;
+      }
+
+      // Fallback: place above the desktop bottom bar if present.
+      const desktopBottomBarHeight = desktopBottomBar?.offsetHeight ?? 0;
+      setBottomOffset(desktopBottomBarHeight + gutter);
     };
 
     computeOffset();
