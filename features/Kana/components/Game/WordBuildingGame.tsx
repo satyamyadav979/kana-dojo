@@ -26,9 +26,6 @@ const springConfig = {
   mass: 0.8
 };
 
-const tileHoverScale = 1.05;
-const tileTapScale = 0.95;
-
 // Helper function to determine if a kana character is hiragana or katakana
 const isHiragana = (char: string): boolean => {
   const code = char.charCodeAt(0);
@@ -46,12 +43,28 @@ interface TileProps {
   onClick: () => void;
   isPlaced?: boolean;
   isDisabled?: boolean;
+  isBlank?: boolean; // For blank placeholder tiles
   index?: number;
 }
 
 // Memoized tile component for smooth animations
 const Tile = memo(
-  ({ id, char, onClick, isPlaced, isDisabled, index }: TileProps) => {
+  ({ id, char, onClick, isPlaced, isDisabled, isBlank, index }: TileProps) => {
+    // Blank placeholder tile (invisible but takes space)
+    if (isBlank) {
+      return (
+        <div
+          className={clsx(
+            'relative flex items-center justify-center rounded-2xl px-4 py-3 text-2xl font-semibold sm:px-6 sm:py-4 sm:text-3xl',
+            'border-b-4 border-transparent bg-[var(--border-color)]/30',
+            'select-none'
+          )}
+        >
+          <span className='opacity-0'>{char}</span>
+        </div>
+      );
+    }
+
     return (
       <motion.button
         layoutId={id}
@@ -59,7 +72,7 @@ const Tile = memo(
         onClick={onClick}
         disabled={isDisabled}
         className={clsx(
-          'relative flex items-center justify-center rounded-2xl px-4 py-3 text-2xl font-semibold transition-colors sm:px-6 sm:py-4 sm:text-3xl',
+          'relative flex cursor-pointer items-center justify-center rounded-2xl px-4 py-3 text-2xl font-semibold transition-colors sm:px-6 sm:py-4 sm:text-3xl',
           'border-b-4 active:translate-y-[4px] active:border-b-0',
           isPlaced
             ? 'border-[var(--secondary-color-accent)] bg-[var(--secondary-color)] text-[var(--background-color)]'
@@ -69,8 +82,6 @@ const Tile = memo(
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.8 }}
-        whileHover={!isDisabled ? { scale: tileHoverScale } : undefined}
-        whileTap={!isDisabled ? { scale: tileTapScale } : undefined}
         transition={springConfig}
       >
         {char}
@@ -91,19 +102,6 @@ const Tile = memo(
 );
 
 Tile.displayName = 'Tile';
-
-// Empty slot placeholder
-const EmptySlot = memo(({ index }: { index: number }) => (
-  <motion.div
-    key={`slot-empty-${index}`}
-    className='flex h-14 w-16 items-center justify-center rounded-2xl border-2 border-dashed border-[var(--border-color)] sm:h-16 sm:w-20'
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: index * 0.05 }}
-  />
-));
-
-EmptySlot.displayName = 'EmptySlot';
 
 interface WordBuildingGameProps {
   isHidden: boolean;
@@ -382,11 +380,6 @@ const WordBuildingGame = ({
     return null;
   }
 
-  // Get tiles that are not yet placed
-  const availableTiles = wordData.allTiles.filter(
-    t => !placedTiles.includes(t)
-  );
-
   return (
     <div
       className={clsx(
@@ -396,10 +389,10 @@ const WordBuildingGame = ({
     >
       <GameIntel gameMode='word-building' feedback={feedback} />
 
-      {/* Word Display */}
-      <div className='flex flex-row items-center gap-2'>
+      {/* Word Display - matches normal Pick game styling */}
+      <div className='flex flex-row items-center gap-1'>
         <motion.p
-          className='text-6xl font-medium tracking-wider sm:text-8xl'
+          className='text-8xl font-medium sm:text-9xl'
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           key={wordData.wordChars.join('')}
@@ -408,59 +401,57 @@ const WordBuildingGame = ({
         </motion.p>
       </div>
 
-      {/* Answer Slots Area */}
-      <div className='flex flex-col items-center gap-4'>
-        <div className='flex flex-row flex-wrap justify-center gap-3'>
-          <AnimatePresence mode='popLayout'>
-            {wordData.answerChars.map((_, index) => {
-              const placedChar = placedTiles[index];
-              if (placedChar) {
-                return (
-                  <Tile
-                    key={`placed-${index}-${placedChar}`}
-                    id={`tile-${placedChar}`}
-                    char={placedChar}
-                    onClick={() => handleTileClick(placedChar)}
-                    isPlaced
-                    isDisabled={isChecking}
-                  />
-                );
-              }
-              return <EmptySlot key={`slot-${index}`} index={index} />;
-            })}
-          </AnimatePresence>
-        </div>
+      {/* Answer Row Area - bordered section like Duolingo */}
+      <div className='flex w-full flex-col items-center'>
+        <div className='w-full border-t-2 border-b-2 border-[var(--border-color)] py-6'>
+          <div className='flex flex-row flex-wrap justify-center gap-3'>
+            <AnimatePresence mode='popLayout'>
+              {placedTiles.map((char, index) => (
+                <Tile
+                  key={`placed-${index}-${char}`}
+                  id={`tile-${char}`}
+                  char={char}
+                  onClick={() => handleTileClick(char)}
+                  isPlaced
+                  isDisabled={isChecking}
+                />
+              ))}
+            </AnimatePresence>
+          </div>
 
-        {/* Reset button */}
-        {placedTiles.length > 0 && !isChecking && (
-          <motion.button
-            type='button'
-            onClick={handleReset}
-            className='flex items-center gap-2 text-sm text-[var(--text-secondary-color)] transition-colors hover:text-[var(--text-color)]'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <RotateCcw className='h-4 w-4' />
-            Reset
-          </motion.button>
-        )}
+          {/* Reset button */}
+          {placedTiles.length > 0 && !isChecking && (
+            <motion.button
+              type='button'
+              onClick={handleReset}
+              className='mt-4 flex w-full cursor-pointer items-center justify-center gap-2 text-sm text-[var(--text-secondary-color)] transition-colors hover:text-[var(--text-color)]'
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <RotateCcw className='h-4 w-4' />
+              Reset
+            </motion.button>
+          )}
+        </div>
       </div>
 
-      {/* Available Tiles */}
+      {/* Available Tiles - blank placeholders stay in place */}
       <div className='flex flex-row flex-wrap justify-center gap-3 sm:gap-4'>
-        <AnimatePresence mode='popLayout'>
-          {availableTiles.map((char, index) => (
+        {wordData.allTiles.map((char, index) => {
+          const isPlaced = placedTiles.includes(char);
+          return (
             <Tile
-              key={`tile-${char}`}
+              key={`option-${char}-${index}`}
               id={`tile-${char}`}
               char={char}
               onClick={() => handleTileClick(char)}
               isDisabled={isChecking}
-              index={index}
+              isBlank={isPlaced} // Show blank placeholder when placed
+              index={!isPlaced ? index : undefined}
             />
-          ))}
-        </AnimatePresence>
+          );
+        })}
       </div>
 
       <Stars />
