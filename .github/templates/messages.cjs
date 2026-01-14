@@ -35,8 +35,8 @@ module.exports = {
   // =============================================================================
   config: {
     // Stale issue timing (in milliseconds)
-    staleWarningAfterMs: 2 * 24 * 60 * 60 * 1000, // 2 days
-    staleCloseAfterMs: 3 * 24 * 60 * 60 * 1000 // 3 days
+    staleWarningAfterMs: 12 * 60 * 60 * 1000, // 12 hours
+    staleCloseAfterMs: 24 * 60 * 60 * 1000 // 24 hours
   },
 
   // =============================================================================
@@ -135,7 +135,7 @@ module.exports = {
       greeting: 'Hey @{commenter}! 👋',
       body: 'Thanks for your interest! Unfortunately, this issue is already assigned to @{assignee}.',
       suggestion:
-        "Don't worry—we have new contribution opportunities posted every 2 hours! Keep an eye on our [issues list](../../issues?q=is%3Aopen+is%3Aissue+label%3Acommunity) for the next one.",
+        "Don't worry—we have new contribution opportunities posted every 30 minutes! Keep an eye on our [issues list](../../issues?q=is%3Aopen+is%3Aissue+label%3Acommunity) for the next one.",
       encouragement: 'がんばって! 💪'
     },
     assigned: {
@@ -168,15 +168,15 @@ module.exports = {
   staleIssues: {
     warning: {
       greeting: '👋 **Heads up!**',
-      body: 'This issue has been inactive for 2 days.',
+      body: 'This issue has been inactive for 12 hours.',
       action: "If you're still working on it, please comment to let us know!",
       consequence:
-        'Otherwise, it will be automatically closed in **1 day** and made available for others to claim.',
+        'Otherwise, it will be automatically closed in **12 hours** and made available for others to claim.',
       footer: 'Need help? Just ask! 🙌'
     },
     closed: {
       title: '🕐 **This issue has been automatically closed**',
-      reason: 'due to 3 days of inactivity.',
+      reason: 'due to 24 hours of inactivity.',
       reassurance:
         "Don't worry—the contribution opportunity will be re-posted for someone else to claim.",
       footer: 'Thanks for your interest in contributing to KanaDojo! 🙏'
