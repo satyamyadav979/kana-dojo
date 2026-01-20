@@ -1088,6 +1088,11 @@ const baseThemeSets: BaseThemeGroup[] = [
         secondaryColor: 'oklch(68.0% 0.205 30.0 / 1)',
       },
       {
+        id: 'castle-gate',
+        backgroundColor: 'oklch(23.0% 0.018 75.0 / 1)',
+        mainColor: 'oklch(70.0% 0.055 80.0 / 1)',
+        secondaryColor: 'oklch(60.0% 0.145 25.0 / 1)',
+      },{
         id: 'tanuki-mischief',
         backgroundColor: 'oklch(22.0% 0.042 55.0 / 1)',
         mainColor: 'oklch(68.0% 0.125 65.0 / 1)',
