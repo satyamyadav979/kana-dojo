@@ -245,83 +245,81 @@ const KanjiSummary = ({
   feedback,
   onContinue,
   buttonRef,
+  isGlassMode,
   isEmbedded = false,
 }: {
   payload: IKanjiObj;
   feedback: React.ReactElement;
   onContinue: () => void;
   buttonRef: React.RefObject<HTMLButtonElement | null>;
+  isGlassMode: boolean;
   isEmbedded?: boolean;
-}) => {
-  const isGlassMode = useThemePreferences().isGlassMode;
+}) => (
+  <motion.div
+    variants={containerVariants}
+    initial='hidden'
+    animate='visible'
+    className={cn(
+      'flex w-full flex-col items-center justify-start gap-4 py-4 md:w-3/4 lg:w-1/2',
 
-  return (
-    <motion.div
-      variants={containerVariants}
-      initial='hidden'
-      animate='visible'
-      className='flex w-full flex-col items-center justify-start gap-4 py-4 md:w-3/4 lg:w-1/2'
-    >
-      {!isEmbedded && <FeedbackHeader feedback={feedback} />}
+      isGlassMode && 'rounded-xl bg-(--card-color) px-4 py-2',
+    )}
+  >
+    {!isEmbedded && <FeedbackHeader feedback={feedback} />}
+
+    <motion.div variants={itemVariants} className='flex w-full flex-row gap-4'>
+      <KanjiDisplay payload={payload} />
 
       <motion.div
-        variants={itemVariants}
-        className={cn(
-          'flex w-full flex-row gap-4',
-          isGlassMode && 'rounded-xl bg-(--card-color) px-4 py-2',
-        )}
+        variants={containerVariants}
+        className='flex w-full flex-col gap-2'
       >
-        <KanjiDisplay payload={payload} />
-
-        <motion.div
-          variants={containerVariants}
-          className='flex w-full flex-col gap-2'
-        >
-          <ReadingsList
-            readings={payload.onyomi}
-            isHidden={!payload.onyomi[0] || payload.onyomi.length === 0}
-            delay={0.2}
-          />
-          <ReadingsList
-            readings={payload.kunyomi}
-            isHidden={!payload.kunyomi[0] || payload.kunyomi.length === 0}
-            delay={0.3}
-          />
-        </motion.div>
-      </motion.div>
-
-      <motion.p
-        variants={meaningVariants}
-        className='w-full text-xl text-(--secondary-color) md:text-2xl'
-      >
-        {payload.meanings.join(', ')}
-      </motion.p>
-
-      {!isEmbedded && (
-        <ContinueButton
-          buttonRef={buttonRef}
-          onClick={onContinue}
-          disabled={false}
+        <ReadingsList
+          readings={payload.onyomi}
+          isHidden={!payload.onyomi[0] || payload.onyomi.length === 0}
+          delay={0.2}
         />
-      )}
+        <ReadingsList
+          readings={payload.kunyomi}
+          isHidden={!payload.kunyomi[0] || payload.kunyomi.length === 0}
+          delay={0.3}
+        />
+      </motion.div>
     </motion.div>
-  );
-};
+
+    <motion.p
+      variants={meaningVariants}
+      className='w-full text-xl text-(--secondary-color) md:text-2xl'
+    >
+      {payload.meanings.join(', ')}
+    </motion.p>
+
+    {!isEmbedded && (
+      <ContinueButton
+        buttonRef={buttonRef}
+        onClick={onContinue}
+        disabled={false}
+      />
+    )}
+  </motion.div>
+);
 
 const VocabSummary = ({
   payload,
   feedback,
   onContinue,
   buttonRef,
+  isGlassMode,
   isEmbedded = false,
 }: {
   payload: IVocabObj;
   feedback: React.ReactElement;
   onContinue: () => void;
   buttonRef: React.RefObject<HTMLButtonElement | null>;
+  isGlassMode: boolean;
   isEmbedded?: boolean;
 }) => {
-  const { displayKana: showKana, isGlassMode } = useThemePreferences();
+  const { displayKana: showKana } = useThemePreferences();
   const rawReading = payload.reading || '';
   const baseReading = rawReading.split(' ')[1] || rawReading;
   const displayReading = showKana ? toKana(baseReading) : toRomaji(baseReading);
@@ -331,17 +329,17 @@ const VocabSummary = ({
       variants={containerVariants}
       initial='hidden'
       animate='visible'
-      className='flex w-full flex-col items-center justify-start gap-4 py-4 md:w-3/4 lg:w-1/2'
+      className={cn(
+        'flex w-full flex-col items-center justify-start gap-4 py-4 md:w-3/4 lg:w-1/2',
+        isGlassMode && 'rounded-xl bg-(--card-color) px-4 py-2',
+      )}
     >
       {!isEmbedded && <FeedbackHeader feedback={feedback} />}
 
       <motion.div
         variants={mainCharVariants}
         style={{ perspective: 1000 }}
-        className={cn(
-          'flex w-full justify-center',
-          isGlassMode && 'rounded-xl bg-(--card-color) px-4 py-2',
-        )}
+        className='flex w-full justify-center'
       >
         <a
           href={`https://jisho.org/search/${encodeURIComponent(payload.word)}`}
@@ -360,10 +358,7 @@ const VocabSummary = ({
 
       <motion.div
         variants={containerVariants}
-        className={cn(
-          'flex w-full flex-col items-start gap-2',
-          isGlassMode && 'rounded-xl bg-(--card-color) px-4 py-2',
-        )}
+        className='flex w-full flex-col items-start gap-2'
       >
         <motion.span
           variants={readingVariants}
@@ -407,6 +402,7 @@ const AnswerSummary = ({
   isEmbedded?: boolean;
 }) => {
   const { playClick } = useClick();
+  const { isGlassMode } = useThemePreferences();
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
@@ -437,6 +433,7 @@ const AnswerSummary = ({
       feedback={feedback}
       onContinue={handleContinue}
       buttonRef={buttonRef}
+      isGlassMode={isGlassMode}
       isEmbedded={isEmbedded}
     />
   ) : (
@@ -446,6 +443,7 @@ const AnswerSummary = ({
       feedback={feedback}
       onContinue={handleContinue}
       buttonRef={buttonRef}
+      isGlassMode={isGlassMode}
       isEmbedded={isEmbedded}
     />
   );

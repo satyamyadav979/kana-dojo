@@ -23,6 +23,8 @@ import {
 import Stars from '@/shared/components/Game/Stars';
 import ProgressBar from '@/shared/components/Game/ProgressBar';
 import { useClick } from '@/shared/hooks/useAudio';
+import { cn } from '@/shared/lib/utils';
+import { useThemePreferences } from '@/features/Preferences';
 import type { GauntletGameMode } from './types';
 
 // Duolingo-like spring animation config
@@ -279,6 +281,7 @@ export default function ActiveGame<T>({
   questionKey,
 }: ActiveGameProps<T>) {
   const { playClick } = useClick();
+  const isGlassMode = useThemePreferences().isGlassMode;
   const buttonRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -534,7 +537,12 @@ export default function ActiveGame<T>({
             className='flex w-full flex-col items-center gap-6 sm:gap-10'
           >
             {/* Question Display */}
-            <div className='flex flex-row items-center gap-1'>
+            <div
+              className={cn(
+                'flex flex-row items-center gap-1',
+                isGlassMode && 'rounded-xl bg-(--card-color) px-4 py-2',
+              )}
+            >
               <motion.div
                 className={questionSizeClass}
                 initial={{ opacity: 0, y: -20 }}
@@ -659,7 +667,10 @@ export default function ActiveGame<T>({
                   return shuffledOptions.length > 0 ? (
                     <motion.div
                       key={questionKey}
-                      className='flex flex-col items-center gap-3 sm:gap-4'
+                      className={cn(
+                        'flex flex-col items-center gap-3 sm:gap-4',
+                        isGlassMode && 'rounded-xl bg-(--card-color) px-4 py-2',
+                      )}
                       variants={tileContainerVariants}
                       initial='hidden'
                       animate='visible'
