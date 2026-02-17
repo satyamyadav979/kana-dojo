@@ -357,12 +357,12 @@
     "id": 60,
     "fact": "Japan has an island called Okunoshima overrun by friendly wild rabbits - formerly a secret chemical weapons manufacturing site.",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": 61,
     "fact": "The Japanese concept 'kintsugi' (é‡‘ç¶™ãŽ) repairs broken pottery with gold, making the piece more valuable by highlighting its history.",
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
