@@ -108,6 +108,7 @@ const Themes = () => {
 
   const visibleThemeSets = themeSets.filter(
     // Temporarily hide seasonal groups in preferences.
+    // themeSet => themeSet.name !== 'Halloween' && themeSet.name !== 'Christmas',
     themeSet => themeSet.name !== 'Halloween' && themeSet.name !== 'Christmas',
   );
 
