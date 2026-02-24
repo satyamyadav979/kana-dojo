@@ -64,6 +64,7 @@ function EffectCard({
       className={clsx(
         'flex h-20 flex-col items-center justify-center gap-1',
         buttonBorderStyles,
+        'rounded-2xl',
         'border-1 border-(--card-color)',
         'cursor-pointer px-2 py-2.5',
       )}
@@ -108,7 +109,7 @@ const Effects = () => {
           defaultOpen={true}
           storageKey='prefs-effects-cursor'
         >
-          <fieldset className='grid grid-cols-5 gap-3 p-1 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8'>
+          <fieldset className='grid grid-cols-4 gap-3 p-1 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7'>
             {CURSOR_TRAIL_EFFECTS.map(effect => (
               <EffectCard
                 key={effect.id}
@@ -130,7 +131,7 @@ const Effects = () => {
         defaultOpen={true}
         storageKey='prefs-effects-click'
       >
-        <fieldset className='grid grid-cols-5 gap-3 p-1 sm:grid-cols-6 md:grid-cols-7 lg:grid-cols-8'>
+        <fieldset className='grid grid-cols-4 gap-3 p-1 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7'>
           {ORDERED_CLICK_EFFECTS.map(effect => (
             <EffectCard
               key={effect.id}

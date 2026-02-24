@@ -10,6 +10,7 @@ import { useJapaneseTTS } from '@/shared/hooks/useJapaneseTTS';
 
 const Behavior = () => {
   const { playClick } = useClick();
+  const behaviorButtonStyles = clsx(buttonBorderStyles, 'rounded-2xl');
 
   const displayKana = usePreferencesStore(state => state.displayKana);
   const setDisplayKana = usePreferencesStore(state => state.setDisplayKana);
@@ -84,7 +85,7 @@ const Behavior = () => {
       <div className='flex flex-row gap-4 p-1'>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 p-4 md:w-1/4',
             'text-(--secondary-color)',
@@ -109,7 +110,7 @@ const Behavior = () => {
         </button>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 p-4 md:w-1/4',
             'text-(--secondary-color)',
@@ -139,7 +140,7 @@ const Behavior = () => {
       <div className='flex flex-row gap-4 p-1'>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 p-4 md:w-1/4',
             'flex flex-row items-end justify-center gap-1.5',
@@ -166,7 +167,7 @@ const Behavior = () => {
         </button>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 p-4 md:w-1/4',
             'flex flex-row items-end justify-center gap-1.5',
@@ -196,7 +197,7 @@ const Behavior = () => {
       <div className='flex flex-row gap-4 p-1'>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 p-4 md:w-1/4',
             'flex flex-row items-end justify-center gap-1.5',
@@ -223,7 +224,7 @@ const Behavior = () => {
         </button>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 p-4 md:w-1/4',
             'flex flex-row items-end justify-center gap-1.5',
@@ -254,7 +255,7 @@ const Behavior = () => {
       <div className='flex flex-row gap-4 p-1'>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 p-4 md:w-1/4',
             'flex flex-row items-end justify-center gap-1.5',
@@ -281,7 +282,7 @@ const Behavior = () => {
         </button>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 p-4 md:w-1/4',
             'flex flex-row items-end justify-center gap-1.5',
@@ -312,7 +313,7 @@ const Behavior = () => {
       <div className='flex flex-row gap-4 p-1'>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 p-4 md:w-1/4',
             'flex flex-row items-end justify-center gap-1.5',
@@ -339,7 +340,7 @@ const Behavior = () => {
         </button>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 p-4 md:w-1/4',
             'flex flex-row items-end justify-center gap-1.5',
@@ -627,7 +628,7 @@ const Behavior = () => {
       <div className='flex flex-row gap-4'>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 md:w-1/4 p-4',
             'flex flex-row gap-1.5 justify-center items-end',
@@ -648,7 +649,7 @@ const Behavior = () => {
         </button>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 md:w-1/4 p-4',
             'flex flex-row gap-1.5 justify-center items-end',
@@ -672,7 +673,7 @@ const Behavior = () => {
       <div className="flex flex-row gap-4">
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 md:w-1/4 p-4',
             'flex flex-row gap-1.5 justify-center items-end',
@@ -696,7 +697,7 @@ const Behavior = () => {
         </button>
         <button
           className={clsx(
-            buttonBorderStyles,
+            behaviorButtonStyles,
             'text-center text-lg',
             'w-1/2 md:w-1/4 p-4',
             'flex flex-row gap-1.5 justify-center items-end',
@@ -726,3 +727,4 @@ const Behavior = () => {
 };
 
 export default Behavior;
+
