@@ -574,7 +574,7 @@ export default function ActiveGame<T>({
                     spellCheck={false}
                     placeholder='Type your answer...'
                     className={clsx(
-                      'w-full rounded-xl border-2 bg-transparent px-4 py-3 text-center text-2xl transition-colors outline-none sm:text-3xl',
+                      'w-full rounded-xl border-2 bg-transparent px-4 py-3 text-center text-2xl transition-colors outline-none focus-visible:outline-none sm:text-3xl',
                       isChecking && checkedResult?.isCorrect
                         ? 'border-green-500 text-green-500'
                         : isChecking && !checkedResult?.isCorrect

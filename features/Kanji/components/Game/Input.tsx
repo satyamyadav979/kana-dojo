@@ -357,7 +357,7 @@ const KanjiInputGame = ({
               'rounded-2xl border-1 border-(--border-color) bg-(--card-color)',
               'text-top text-left text-lg font-medium lg:text-xl',
               'text-(--secondary-color) placeholder:text-base placeholder:font-normal placeholder:text-(--secondary-color)/40',
-              'resize-none outline-none focus:border-(--secondary-color)',
+              'resize-none outline-none focus:border-(--secondary-color) focus-visible:outline-none',
               'transition-colors duration-200 ease-out',
               showContinue && 'cursor-not-allowed opacity-60',
             )}
