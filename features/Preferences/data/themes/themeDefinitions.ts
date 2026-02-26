@@ -1101,6 +1101,13 @@ const baseThemeSets: BaseThemeGroup[] = [
         mainColor: 'oklch(72.0% 0.145 330.0 / 1)',
         secondaryColor: 'oklch(60.0% 0.075 260.0 / 1)',
       },
+      {
+        id: 'torii-sunset',
+        displayName: 'Torii Sunset',
+        backgroundColor: 'oklch(18% 0.045 25 / 1)',
+        mainColor: 'oklch(85% 0.200 40 / 1)',
+        secondaryColor: 'oklch(78% 0.170 15 / 1)',
+     },
     ],
   },
   {
