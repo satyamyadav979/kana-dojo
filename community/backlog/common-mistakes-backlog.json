@@ -796,7 +796,7 @@
     "correct": "私はお金がありません。",
     "explanation": "Negative polite form already complete. (Pattern set 5)",
     "id": 100,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
