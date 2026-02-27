@@ -1071,12 +1071,12 @@
     "id": 179,
     "fact": "There's a Japanese concept 'ningensei' (人間性) meaning humanity or human nature - the qualities that make us human.",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": 180,
     "fact": "Japan has 'sunaba' (砂場) sand therapy - walking barefoot in sand gardens believed to improve mental health.",
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
