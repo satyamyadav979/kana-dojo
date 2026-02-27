@@ -18,7 +18,7 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     # Skip automation PRs to save GitHub Actions minutes
-    if: ${{ !contains(github.event.workflow_run.head_branch, 'automation/') }}
+    if: ${{ github.event.workflow_run.event == 'pull_request' && !contains(github.event.workflow_run.head_branch, 'automation/') }}
 
     steps:
       - name: Post PR status comment
@@ -49,15 +49,35 @@ jobs:
             const successT = templates.prCheck.success;
             const failureT = templates.prCheck.failure;
 
-            const prs = workflowRun.pull_requests || [];
-            if (!prs.length) {
-              console.log('No pull request associated with this workflow_run');
-              return;
-            }
-
-            const prNumber = prs[0].number;
             const headSha = workflowRun.head_sha;
             const conclusion = workflowRun.conclusion;
+            let prNumber = null;
+
+            const prs = workflowRun.pull_requests || [];
+            if (prs.length > 0 && prs[0].number) {
+              prNumber = prs[0].number;
+            } else if (headSha) {
+              // workflow_run.pull_requests can be empty for some PR workflows; resolve by commit SHA.
+              try {
+                const { data: associatedPrs } = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  commit_sha: headSha
+                });
+                const openPr = (associatedPrs || []).find(function(pr) { return pr.state === 'open'; });
+                const fallbackPr = openPr || (associatedPrs || [])[0];
+                if (fallbackPr && fallbackPr.number) {
+                  prNumber = fallbackPr.number;
+                }
+              } catch (error) {
+                console.log(`Failed to resolve PR by commit SHA ${headSha}: ${error.message}`);
+              }
+            }
+
+            if (!prNumber) {
+              console.log(`No pull request associated with workflow_run ${workflowRun.id} (head_sha=${headSha}); skipping comment.`);
+              return;
+            }
 
             const marker = `<!-- pr-quality-check:${headSha} -->`;
 
