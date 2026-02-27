@@ -99,8 +99,7 @@ jobs:
             }
 
             const alreadyCommented = comments.some(function(c) {
-              return c.user && c.user.login === 'github-actions[bot]' &&
-                     typeof c.body === 'string' &&
+              return typeof c.body === 'string' &&
                      c.body.includes(marker);
             });
 
