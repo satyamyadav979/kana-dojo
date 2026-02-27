@@ -772,6 +772,7 @@ jobs:
               } catch (e) {
                 errors.push(`Error reading video game quotes file: ${e.message}`);
               }
+            }
 
             isValid = errors.length === 0;
 
