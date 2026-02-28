@@ -291,7 +291,7 @@
     "id": 49,
     "text": "\"〜ながらも\" means \"even while\" or \"though\" (contrast).",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": 50,
@@ -380,7 +380,7 @@
   {
     "id": 64,
     "text": "\"〜によると\" means \"according to...\".",
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
