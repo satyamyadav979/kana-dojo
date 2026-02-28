@@ -492,7 +492,7 @@
     "correct": "日本語が好きです。",
     "explanation": "好き takes が, not を. (Pattern set 4)",
     "id": 62,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
