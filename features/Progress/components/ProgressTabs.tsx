@@ -8,6 +8,7 @@ import { TrendingUp, Flame, Trophy } from 'lucide-react';
 import { useClick } from '@/shared/hooks/useAudio';
 import { cn } from '@/shared/lib/utils';
 import dynamic from 'next/dynamic';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 
 const isDevOrPreview =
   process.env.NODE_ENV === 'development' ||
@@ -44,7 +45,22 @@ const viewOptions: { value: ViewType; label: string; icon: React.ReactNode }[] =
 
 const ProgressTabs = () => {
   const { playClick } = useClick();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const tabParam = searchParams.get('tab') as ViewType | null;
+
   const [currentView, setCurrentView] = useState<ViewType>('statistics');
+
+  useEffect(() => {
+    if (
+      tabParam &&
+      ['statistics', 'streak', 'achievements'].includes(tabParam)
+    ) {
+      setCurrentView(tabParam);
+    }
+  }, [tabParam]);
 
   const [layout, setLayout] = useState<{
     top: number;
@@ -128,6 +144,9 @@ const ProgressTabs = () => {
               key={option.value}
               onClick={() => {
                 setCurrentView(option.value);
+                router.replace(`${pathname}?tab=${option.value}`, {
+                  scroll: false,
+                });
                 playClick();
               }}
               className={cn(

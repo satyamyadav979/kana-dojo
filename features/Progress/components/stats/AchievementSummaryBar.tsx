@@ -104,14 +104,14 @@ export default function AchievementSummaryBar({
             </div>
           </div>
           <Link
-            href='/progress'
+            href='?tab=achievements'
             className={cn(
               'group/link flex cursor-pointer items-center gap-2 rounded-full px-5 py-2.5',
               'bg-(--background-color)',
               'border border-(--border-color)/30',
               'text-sm font-semibold text-(--secondary-color)',
               'transition-colors duration-300',
-              'hover:border-(--main-color)/30 hover:text-(--main-color)',
+              'hover:text-(--main-color)',
             )}
           >
             View All
