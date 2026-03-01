@@ -119,7 +119,7 @@ const ProgressTabs = () => {
               ? `${layout.width}px`
               : layout.width,
         }}
-        className='fixed z-30 flex border-b-2 border-(--border-color) bg-(--background-color)'
+        className='fixed z-30 flex border-b-2 border-(--border-color) bg-(--card-color)'
       >
         {viewOptions.map(option => {
           const isSelected = currentView === option.value;
