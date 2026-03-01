@@ -663,7 +663,7 @@
     "example": "新しい料理にチャレンジしてみる。",
     "id": 74,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ナンバー (nanbaa)",
@@ -671,7 +671,7 @@
     "explanation": "Can mean ranking position in Japanese usage. (Set 4)",
     "example": "彼はチームのナンバー1だ。",
     "id": 75,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
