@@ -402,7 +402,7 @@
     "jlpt": "N4",
     "id": 45,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "もし時間があれば、一緒に復習しませんか。",
@@ -428,7 +428,7 @@
     "english": "This app is easy to use even for beginners.",
     "jlpt": "N3",
     "id": 48,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
