@@ -31,7 +31,7 @@ export const AchievementCard = ({
   return (
     <div
       className={clsx(
-        'relative overflow-hidden p-6 max-sm:rounded-none max-sm:border-x-0 sm:rounded-2xl',
+        'relative overflow-hidden rounded-2xl p-6',
         isUnlocked
           ? 'bg-(--card-color)'
           : 'border border-(--border-color) bg-(--background-color) opacity-80',
