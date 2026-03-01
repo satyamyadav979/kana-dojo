@@ -1,16 +1,8 @@
 'use client';
 
 import React from 'react';
-import {
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Cell,
-} from 'recharts';
-import { RotateCcw, Menu, ChevronRight } from 'lucide-react';
+import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { RotateCcw } from 'lucide-react';
 
 interface ClassicSessionSummaryProps {
   title?: string;
@@ -36,182 +28,154 @@ export default function ClassicSessionSummary({
   const total = correct + wrong;
   const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
 
-  const barData = [
-    { name: 'correct', value: correct },
-    { name: 'wrong', value: wrong },
-    { name: 'streak', value: bestStreak },
-    { name: 'stars', value: stars },
-  ];
-
-  const CustomTooltip = ({ active, payload, label }: any) => {
-    if (active && payload && payload.length) {
-      return (
-        <div className='rounded-lg border border-(--border-color) bg-(--background-color) px-4 py-2 font-bold text-(--main-color) shadow-lg'>
-          <p className='lowercase'>{`${label}  :  ${payload[0].value}`}</p>
-        </div>
-      );
-    }
-    return null;
-  };
+  const pieData =
+    total > 0
+      ? [
+          { name: 'correct', value: correct },
+          { name: 'wrong', value: wrong },
+        ]
+      : [{ name: 'empty', value: 1 }];
 
   return (
-    <div className='fixed inset-0 z-50 flex h-full w-full flex-col items-center overflow-x-hidden overflow-y-auto bg-(--background-color) font-sans selection:bg-(--main-color) selection:text-(--background-color)'>
-      <div className='flex min-h-screen w-full max-w-[1240px] flex-col justify-center px-8 py-12 text-(--main-color) sm:px-12 lg:px-24'>
-        {/* Top Header */}
-        <div className='mb-12 flex items-center gap-3 select-none sm:mb-20'>
-          <ChevronRight
-            size={24}
-            className='text-(--secondary-color) opacity-60'
-            strokeWidth={3}
-          />
-          <h1 className='text-2xl font-black tracking-tight text-(--secondary-color) lowercase opacity-80 sm:text-3xl'>
+    <div className='fixed inset-0 z-50 flex h-full w-full flex-col overflow-y-auto bg-(--background-color)'>
+      <div className='mx-auto flex min-h-screen w-full max-w-[1400px] flex-1 flex-col justify-center px-6 py-12 sm:px-12 sm:py-24 lg:p-24 lg:pb-36 xl:pb-40'>
+        {/* Header */}
+        <div className='relative mt-10 mb-12 flex flex-col gap-2 select-none sm:mb-16 lg:mt-0 lg:mb-24'>
+          <h1 className='text-4xl font-black tracking-tighter text-(--main-color) lowercase sm:text-5xl lg:text-7xl'>
             {title}
           </h1>
-          <span className='ml-4 hidden text-lg text-(--secondary-color) lowercase opacity-40 sm:inline-block'>
+          <p className='text-xl tracking-tight text-(--secondary-color) lowercase opacity-80 sm:text-2xl'>
             {subtitle}
-          </span>
+          </p>
         </div>
 
-        {/* Primary Stats Row */}
-        <div className='mb-20 flex flex-wrap items-baseline gap-x-16 gap-y-12 lg:gap-x-28'>
-          <div className='group flex flex-col'>
-            <span className='mb-1 text-xl font-medium text-(--secondary-color) lowercase opacity-60 transition-opacity duration-300 select-none group-hover:opacity-100 sm:text-2xl'>
-              acc
-            </span>
-            <span className='text-[6rem] leading-none font-black tracking-tighter sm:text-[9rem] xl:text-[11rem]'>
-              {accuracy}%
-            </span>
-          </div>
+        {/* Main Content: Stats + Chart */}
+        <div className='mb-16 flex flex-1 flex-col items-center justify-between gap-16 lg:flex-row lg:items-start lg:gap-24'>
+          {/* Stats Grid */}
+          <div className='grid w-full flex-1 grid-cols-2 gap-x-8 gap-y-12 sm:gap-y-16 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-24'>
+            {/* Primary Massive Stats */}
+            <div className='col-span-2 flex flex-wrap gap-12 select-text sm:gap-24 lg:col-span-3 lg:gap-32'>
+              <div className='flex flex-col'>
+                <span className='mb-2 text-xl text-(--secondary-color) lowercase opacity-80 select-none sm:text-2xl'>
+                  accuracy
+                </span>
+                <span className='text-[5rem] leading-none font-black tracking-tighter text-(--main-color) sm:text-9xl xl:text-[11rem]'>
+                  {accuracy}%
+                </span>
+              </div>
+              <div className='flex flex-col'>
+                <span className='mb-2 text-xl text-(--secondary-color) lowercase opacity-80 select-none sm:text-2xl'>
+                  score
+                </span>
+                <div className='flex items-baseline text-[5rem] leading-none font-black tracking-tighter text-(--main-color) sm:text-9xl xl:text-[11rem]'>
+                  {correct}
+                  <span className='ml-2 text-4xl tracking-tight text-(--main-color) opacity-100 sm:text-6xl lg:ml-4 xl:text-8xl'>
+                    /{total}
+                  </span>
+                </div>
+              </div>
+            </div>
 
-          <div className='group flex flex-col'>
-            <span className='mb-1 text-xl font-medium text-(--secondary-color) lowercase opacity-60 transition-opacity duration-300 select-none group-hover:opacity-100 sm:text-2xl'>
-              correct
-            </span>
-            <div className='flex items-baseline text-6xl leading-none font-black tracking-tighter sm:text-[7rem] xl:text-[9rem]'>
-              {correct}
-              <span className='ml-3 text-3xl tracking-tight text-(--secondary-color) opacity-40 sm:text-5xl lg:ml-5'>
-                /{total}
+            {/* Secondary Stats */}
+            <div className='flex flex-col'>
+              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
+                correct
+              </span>
+              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6.5rem]'>
+                {correct}
               </span>
             </div>
-          </div>
 
-          <div className='group flex flex-col'>
-            <span className='mb-1 text-xl font-medium text-(--secondary-color) lowercase opacity-60 transition-opacity duration-300 select-none group-hover:opacity-100 sm:text-2xl'>
-              wrong
-            </span>
-            <span className='text-6xl leading-none font-black tracking-tighter text-(--secondary-color) opacity-90 sm:text-[7rem] xl:text-[9rem]'>
-              {wrong}
-            </span>
-          </div>
-        </div>
-
-        {/* Extended Stats & Charts */}
-        <div className='mb-24 grid w-full grid-cols-1 gap-16 lg:grid-cols-4 lg:gap-24'>
-          {/* Secondary Stats Column */}
-          <div className='flex flex-row flex-wrap justify-center gap-8 lg:mt-8 lg:flex-col lg:justify-start lg:gap-12'>
             <div className='flex flex-col'>
-              <span className='mb-1 text-base font-medium text-(--secondary-color) lowercase opacity-60 select-none sm:text-lg'>
+              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
+                wrong
+              </span>
+              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6.5rem]'>
+                {wrong}
+              </span>
+            </div>
+
+            <div className='flex flex-col'>
+              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
+                total attempts
+              </span>
+              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6.5rem]'>
+                {total}
+              </span>
+            </div>
+
+            <div className='flex flex-col'>
+              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
                 best streak
               </span>
-              <span className='text-4xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl'>
+              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6.5rem]'>
                 {bestStreak}
               </span>
             </div>
 
             <div className='flex flex-col'>
-              <span className='mb-1 text-base font-medium text-(--secondary-color) lowercase opacity-60 select-none sm:text-lg'>
+              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
                 stars earned
               </span>
-              <span className='text-4xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl'>
+              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6.5rem]'>
                 {stars}
-              </span>
-            </div>
-
-            <div className='flex flex-col'>
-              <span className='mb-1 text-base font-medium text-(--secondary-color) lowercase opacity-60 select-none sm:text-lg'>
-                total attempts
-              </span>
-              <span className='text-4xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl'>
-                {total}
               </span>
             </div>
           </div>
 
-          {/* Bar Chart Section */}
-          <div className='group relative h-[280px] w-full select-none sm:h-[360px] lg:col-span-3'>
+          {/* Chart Section */}
+          <div className='relative flex aspect-square w-full max-w-[280px] flex-col items-center justify-center select-none sm:max-w-[360px] xl:max-w-[480px]'>
             <ResponsiveContainer width='100%' height='100%'>
-              <BarChart
-                data={barData}
-                margin={{ top: 20, right: 10, left: -20, bottom: 0 }}
-              >
-                <XAxis
-                  dataKey='name'
-                  axisLine={{
-                    stroke: 'var(--secondary-color)',
-                    strokeWidth: 2,
-                    opacity: 0.1,
-                  }}
-                  tickLine={false}
-                  tick={{
-                    fill: 'var(--secondary-color)',
-                    fontSize: 16,
-                    fontWeight: 600,
-                    opacity: 0.8,
-                  }}
-                  dy={15}
-                />
-                <YAxis
-                  axisLine={false}
-                  tickLine={false}
-                  tick={{
-                    fill: 'var(--secondary-color)',
-                    fontSize: 14,
-                    fontWeight: 500,
-                    opacity: 0.5,
-                  }}
-                  dx={-10}
-                />
-                <Tooltip
-                  cursor={{ fill: 'var(--secondary-color)', opacity: 0.05 }}
-                  content={<CustomTooltip />}
-                />
-                <Bar
+              <PieChart>
+                <Pie
+                  data={pieData}
+                  cx='50%'
+                  cy='50%'
+                  innerRadius='88%'
+                  outerRadius='100%'
+                  paddingAngle={total > 0 && correct > 0 && wrong > 0 ? 3 : 0}
                   dataKey='value'
-                  radius={[6, 6, 0, 0]}
+                  stroke='none'
+                  startAngle={90}
+                  endAngle={-270}
                   isAnimationActive={false}
-                  maxBarSize={120}
                 >
-                  {barData.map((entry, index) => (
-                    <Cell
-                      key={`cell-${index}`}
-                      fill={
-                        entry.name === 'wrong'
-                          ? 'var(--secondary-color)'
-                          : 'var(--main-color)'
-                      }
-                      fillOpacity={entry.name === 'wrong' ? 0.7 : 0.9}
-                    />
-                  ))}
-                </Bar>
-              </BarChart>
+                  {total > 0 ? (
+                    <>
+                      <Cell fill='var(--main-color)' />
+                      <Cell fill='var(--secondary-color)' opacity={0.6} />
+                    </>
+                  ) : (
+                    <Cell fill='var(--border-color)' opacity={0.2} />
+                  )}
+                </Pie>
+              </PieChart>
             </ResponsiveContainer>
+
+            <div className='pointer-events-none absolute inset-0 flex flex-col items-center justify-center'>
+              <span className='mb-1 text-6xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6rem]'>
+                {accuracy}%
+              </span>
+              <span className='sm:text-md text-sm tracking-[0.3em] text-(--secondary-color) uppercase'>
+                accuracy
+              </span>
+            </div>
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div className='mt-auto flex flex-wrap items-center gap-8 pt-8 select-none'>
+        <div className='mt-auto flex flex-wrap items-center gap-6 pt-4 select-none lg:pt-12'>
           <button
             onClick={onNewSession}
-            className='flex items-center justify-center gap-4 rounded-md bg-transparent px-8 py-3 text-xl font-bold text-(--main-color) lowercase outline-hidden transition-all duration-200 hover:bg-(--main-color) hover:text-(--background-color) focus-visible:bg-(--main-color) focus-visible:text-(--background-color) sm:text-2xl'
+            className='flex items-center justify-center gap-3 rounded bg-(--main-color) px-10 py-5 text-xl font-bold text-(--background-color) lowercase outline-hidden transition-opacity hover:opacity-90 sm:text-2xl'
           >
-            <RotateCcw size={22} strokeWidth={3} />
-            next test
+            <RotateCcw size={28} strokeWidth={2.5} />
+            next session
           </button>
           <button
             onClick={onBackToSelection}
-            className='flex items-center justify-center gap-4 rounded-md bg-transparent px-8 py-3 text-xl font-bold text-(--secondary-color) lowercase outline-hidden transition-all duration-200 hover:text-(--main-color) focus-visible:text-(--main-color) sm:text-2xl'
+            className='flex items-center justify-center gap-3 rounded border-[3px] border-(--secondary-color) bg-transparent px-10 py-5 text-xl font-bold text-(--secondary-color) lowercase opacity-80 outline-hidden transition-opacity hover:opacity-100 sm:text-2xl'
           >
-            <Menu size={22} strokeWidth={3} />
             menu
           </button>
         </div>
