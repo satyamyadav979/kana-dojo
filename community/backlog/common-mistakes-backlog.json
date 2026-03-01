@@ -573,7 +573,7 @@
     "explanation": "Conditional needs たら/なら etc. (Pattern set 4)",
     "id": 72,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "wrong": "これは私のです本。",
@@ -581,7 +581,7 @@
     "explanation": "Place の correctly in noun phrase. (Pattern set 4)",
     "id": 73,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "wrong": "会議は三時からで始まります。",
@@ -589,14 +589,14 @@
     "explanation": "Remove unnecessary particle after から. (Pattern set 4)",
     "id": 74,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "wrong": "日本へ旅行を行きたい。",
     "correct": "日本へ旅行に行きたい。",
     "explanation": "Use に行く for purpose. (Pattern set 4)",
     "id": 75,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
