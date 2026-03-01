@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
-import { RotateCcw } from 'lucide-react';
+import { Menu, RotateCcw } from 'lucide-react';
 
 interface ClassicSessionSummaryProps {
   title?: string;
@@ -52,24 +52,24 @@ export default function ClassicSessionSummary({
         {/* Main Content: Stats + Chart */}
         <div className='mb-3 flex flex-1 flex-col items-center justify-between gap-3 sm:mb-8 sm:gap-8 lg:flex-row lg:items-center lg:gap-16'>
           {/* Stats Grid */}
-          <div className='grid w-full flex-1 grid-cols-2 gap-x-4 gap-y-3 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-12'>
+          <div className='grid w-full flex-1 grid-cols-2 gap-x-3 gap-y-1.5 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-12'>
             {/* Primary Massive Stats */}
-            <div className='col-span-2 flex flex-wrap gap-5 select-text sm:gap-16 lg:col-span-3 lg:gap-24'>
-              <div className='flex flex-col'>
-                <span className='mb-0.5 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-lg'>
+            <div className='col-span-2 flex flex-wrap items-end gap-2 select-text sm:gap-16 lg:col-span-3 lg:gap-24'>
+              <div className='flex flex-col leading-none'>
+                <span className='mb-0 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-lg'>
                   accuracy
                 </span>
-                <span className='text-4xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6rem]'>
+                <span className='text-3xl leading-[0.9] font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6rem]'>
                   {accuracy}%
                 </span>
               </div>
-              <div className='flex flex-col'>
-                <span className='mb-0.5 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-lg'>
+              <div className='flex flex-col leading-none'>
+                <span className='mb-0 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-lg'>
                   score
                 </span>
-                <div className='flex items-baseline text-4xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6rem]'>
+                <div className='flex items-baseline text-3xl leading-[0.9] font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6rem]'>
                   {correct}
-                  <span className='ml-1.5 text-2xl tracking-tight text-(--main-color) opacity-100 sm:ml-2 sm:text-5xl xl:text-6xl'>
+                  <span className='ml-1 text-xl leading-[0.9] tracking-tight text-(--main-color) opacity-100 sm:ml-2 sm:text-5xl xl:text-6xl'>
                     /{total}
                   </span>
                 </div>
@@ -77,47 +77,47 @@ export default function ClassicSessionSummary({
             </div>
 
             {/* Secondary Stats */}
-            <div className='flex flex-col'>
-              <span className='mb-0.5 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-base'>
+            <div className='flex flex-col leading-none'>
+              <span className='mb-0 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-base'>
                 correct
               </span>
-              <span className='text-3xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
+              <span className='text-2xl leading-[0.9] font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
                 {correct}
               </span>
             </div>
 
-            <div className='flex flex-col'>
-              <span className='mb-0.5 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-base'>
+            <div className='flex flex-col leading-none'>
+              <span className='mb-0 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-base'>
                 wrong
               </span>
-              <span className='text-3xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
+              <span className='text-2xl leading-[0.9] font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
                 {wrong}
               </span>
             </div>
 
-            <div className='flex flex-col'>
-              <span className='mb-0.5 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-base'>
+            <div className='flex flex-col leading-none'>
+              <span className='mb-0 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-base'>
                 total attempts
               </span>
-              <span className='text-3xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
+              <span className='text-2xl leading-[0.9] font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
                 {total}
               </span>
             </div>
 
-            <div className='flex flex-col'>
-              <span className='mb-0.5 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-base'>
+            <div className='flex flex-col leading-none'>
+              <span className='mb-0 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-base'>
                 best streak
               </span>
-              <span className='text-3xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
+              <span className='text-2xl leading-[0.9] font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
                 {bestStreak}
               </span>
             </div>
 
-            <div className='flex flex-col'>
-              <span className='mb-0.5 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-base'>
+            <div className='flex flex-col leading-none'>
+              <span className='mb-0 text-xs text-(--secondary-color) lowercase opacity-80 select-none sm:mb-1 sm:text-base'>
                 stars earned
               </span>
-              <span className='text-3xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
+              <span className='text-2xl leading-[0.9] font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
                 {stars}
               </span>
             </div>
@@ -169,6 +169,7 @@ export default function ClassicSessionSummary({
             onClick={onBackToSelection}
             className='flex h-12 flex-1 cursor-pointer items-center justify-center gap-2 rounded-3xl bg-(--secondary-color) px-4 py-4 text-base font-bold text-(--background-color) lowercase outline-hidden transition-all duration-150 hover:opacity-90 active:scale-95 active:brightness-95 sm:h-14 sm:flex-none sm:px-8 sm:text-lg xl:text-xl'
           >
+            <Menu className='h-5 w-5 sm:h-6 sm:w-6' strokeWidth={2.5} />
             menu
           </button>
           <button
@@ -176,7 +177,8 @@ export default function ClassicSessionSummary({
             className='flex h-12 flex-1 cursor-pointer items-center justify-center gap-2 rounded-3xl bg-(--main-color) px-4 py-4 text-base font-bold text-(--background-color) lowercase outline-hidden transition-all duration-150 hover:opacity-90 active:scale-95 active:brightness-95 sm:h-14 sm:flex-none sm:px-8 sm:text-lg xl:text-xl'
           >
             <RotateCcw className='h-5 w-5 sm:h-6 sm:w-6' strokeWidth={2.5} />
-            new session
+            <span className='sm:hidden'>new</span>
+            <span className='hidden sm:inline'>new session</span>
           </button>
         </div>
       </div>
