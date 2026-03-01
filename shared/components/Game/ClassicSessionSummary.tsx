@@ -37,39 +37,39 @@ export default function ClassicSessionSummary({
       : [{ name: 'empty', value: 1 }];
 
   return (
-    <div className='fixed inset-0 z-50 flex h-full w-full flex-col overflow-y-auto bg-(--background-color)'>
-      <div className='mx-auto flex min-h-screen w-full max-w-[1400px] flex-1 flex-col justify-center px-6 py-12 sm:px-12 sm:py-24 lg:p-24 lg:pb-36 xl:pb-40'>
+    <div className='fixed inset-0 z-50 flex h-full w-full flex-col overflow-hidden bg-(--background-color)'>
+      <div className='mx-auto flex h-full w-full max-w-[1200px] flex-1 flex-col justify-center px-4 py-8 sm:px-8 sm:py-12 lg:px-16 lg:py-8 lg:pb-32'>
         {/* Header */}
-        <div className='relative mt-10 mb-12 flex flex-col gap-2 select-none sm:mb-16 lg:mt-0 lg:mb-24'>
-          <h1 className='text-4xl font-black tracking-tighter text-(--main-color) lowercase sm:text-5xl lg:text-7xl'>
+        <div className='relative mt-4 mb-8 flex flex-col gap-1 select-none sm:mb-10 lg:mt-0 lg:mb-12'>
+          <h1 className='text-3xl font-black tracking-tighter text-(--main-color) lowercase sm:text-4xl lg:text-5xl'>
             {title}
           </h1>
-          <p className='text-xl tracking-tight text-(--secondary-color) lowercase opacity-80 sm:text-2xl'>
+          <p className='text-lg tracking-tight text-(--secondary-color) lowercase opacity-80 sm:text-xl'>
             {subtitle}
           </p>
         </div>
 
         {/* Main Content: Stats + Chart */}
-        <div className='mb-16 flex flex-1 flex-col items-center justify-between gap-16 lg:flex-row lg:items-start lg:gap-24'>
+        <div className='mb-8 flex flex-1 flex-col items-center justify-between gap-8 lg:flex-row lg:items-center lg:gap-16'>
           {/* Stats Grid */}
-          <div className='grid w-full flex-1 grid-cols-2 gap-x-8 gap-y-12 sm:gap-y-16 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-24'>
+          <div className='grid w-full flex-1 grid-cols-2 gap-x-6 gap-y-8 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-12'>
             {/* Primary Massive Stats */}
-            <div className='col-span-2 flex flex-wrap gap-12 select-text sm:gap-24 lg:col-span-3 lg:gap-32'>
+            <div className='col-span-2 flex flex-wrap gap-8 select-text sm:gap-16 lg:col-span-3 lg:gap-24'>
               <div className='flex flex-col'>
-                <span className='mb-2 text-xl text-(--secondary-color) lowercase opacity-80 select-none sm:text-2xl'>
+                <span className='mb-1 text-sm text-(--secondary-color) lowercase opacity-80 select-none sm:text-lg'>
                   accuracy
                 </span>
-                <span className='text-[5rem] leading-none font-black tracking-tighter text-(--main-color) sm:text-9xl xl:text-[11rem]'>
+                <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6rem]'>
                   {accuracy}%
                 </span>
               </div>
               <div className='flex flex-col'>
-                <span className='mb-2 text-xl text-(--secondary-color) lowercase opacity-80 select-none sm:text-2xl'>
+                <span className='mb-1 text-sm text-(--secondary-color) lowercase opacity-80 select-none sm:text-lg'>
                   score
                 </span>
-                <div className='flex items-baseline text-[5rem] leading-none font-black tracking-tighter text-(--main-color) sm:text-9xl xl:text-[11rem]'>
+                <div className='flex items-baseline text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6rem]'>
                   {correct}
-                  <span className='ml-2 text-4xl tracking-tight text-(--main-color) opacity-100 sm:text-6xl lg:ml-4 xl:text-8xl'>
+                  <span className='ml-2 text-3xl tracking-tight text-(--main-color) opacity-100 sm:text-5xl xl:text-6xl'>
                     /{total}
                   </span>
                 </div>
@@ -78,53 +78,53 @@ export default function ClassicSessionSummary({
 
             {/* Secondary Stats */}
             <div className='flex flex-col'>
-              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
+              <span className='mb-1 text-sm text-(--secondary-color) lowercase opacity-80 select-none sm:text-base'>
                 correct
               </span>
-              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6.5rem]'>
+              <span className='text-4xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
                 {correct}
               </span>
             </div>
 
             <div className='flex flex-col'>
-              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
+              <span className='mb-1 text-sm text-(--secondary-color) lowercase opacity-80 select-none sm:text-base'>
                 wrong
               </span>
-              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6.5rem]'>
+              <span className='text-4xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
                 {wrong}
               </span>
             </div>
 
             <div className='flex flex-col'>
-              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
+              <span className='mb-1 text-sm text-(--secondary-color) lowercase opacity-80 select-none sm:text-base'>
                 total attempts
               </span>
-              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6.5rem]'>
+              <span className='text-4xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
                 {total}
               </span>
             </div>
 
             <div className='flex flex-col'>
-              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
+              <span className='mb-1 text-sm text-(--secondary-color) lowercase opacity-80 select-none sm:text-base'>
                 best streak
               </span>
-              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6.5rem]'>
+              <span className='text-4xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
                 {bestStreak}
               </span>
             </div>
 
             <div className='flex flex-col'>
-              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
+              <span className='mb-1 text-sm text-(--secondary-color) lowercase opacity-80 select-none sm:text-base'>
                 stars earned
               </span>
-              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6.5rem]'>
+              <span className='text-4xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
                 {stars}
               </span>
             </div>
           </div>
 
           {/* Chart Section */}
-          <div className='relative flex aspect-square w-full max-w-[280px] flex-col items-center justify-center select-none sm:max-w-[360px] xl:max-w-[480px]'>
+          <div className='relative flex aspect-square w-full max-w-[200px] flex-col items-center justify-center select-none sm:max-w-[260px] xl:max-w-[320px]'>
             <ResponsiveContainer width='100%' height='100%'>
               <PieChart>
                 <Pie
@@ -153,10 +153,10 @@ export default function ClassicSessionSummary({
             </ResponsiveContainer>
 
             <div className='pointer-events-none absolute inset-0 flex flex-col items-center justify-center'>
-              <span className='mb-1 text-6xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6rem]'>
+              <span className='mb-1 text-4xl leading-none font-black tracking-tighter text-(--main-color) sm:text-5xl xl:text-[4rem]'>
                 {accuracy}%
               </span>
-              <span className='sm:text-md text-sm tracking-[0.3em] text-(--secondary-color) uppercase'>
+              <span className='text-xs tracking-[0.3em] text-(--secondary-color) uppercase sm:text-sm'>
                 accuracy
               </span>
             </div>
@@ -164,17 +164,17 @@ export default function ClassicSessionSummary({
         </div>
 
         {/* Action Buttons */}
-        <div className='mt-auto flex flex-wrap items-center gap-6 pt-4 select-none lg:pt-12'>
+        <div className='mt-auto flex flex-wrap items-center gap-4 pt-4 select-none'>
           <button
             onClick={onNewSession}
-            className='flex items-center justify-center gap-3 rounded bg-(--main-color) px-10 py-5 text-xl font-bold text-(--background-color) lowercase outline-hidden transition-opacity hover:opacity-90 sm:text-2xl'
+            className='flex items-center justify-center gap-2 rounded bg-(--main-color) px-8 py-4 text-lg font-bold text-(--background-color) lowercase outline-hidden transition-opacity hover:opacity-90 sm:text-xl'
           >
-            <RotateCcw size={28} strokeWidth={2.5} />
+            <RotateCcw size={24} strokeWidth={2.5} />
             next session
           </button>
           <button
             onClick={onBackToSelection}
-            className='flex items-center justify-center gap-3 rounded border-[3px] border-(--secondary-color) bg-transparent px-10 py-5 text-xl font-bold text-(--secondary-color) lowercase opacity-80 outline-hidden transition-opacity hover:opacity-100 sm:text-2xl'
+            className='flex items-center justify-center gap-2 rounded border-[3px] border-(--secondary-color) bg-transparent px-8 py-4 text-lg font-bold text-(--secondary-color) lowercase opacity-80 outline-hidden transition-opacity hover:opacity-100 sm:text-xl'
           >
             menu
           </button>
