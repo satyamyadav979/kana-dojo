@@ -661,14 +661,14 @@
     "explanation": "な-adjectives require な before nouns. (Pattern set 5)",
     "id": 83,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "wrong": "これはおいしいだ。",
     "correct": "これはおいしい。",
     "explanation": "い-adjectives do not take だ in plain present. (Pattern set 5)",
     "id": 84,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
