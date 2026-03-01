@@ -715,7 +715,7 @@
     "mainColor": "oklch(70.0% 0.145 150.0 / 1)",
     "secondaryColor": "oklch(78.0% 0.095 140.0 / 1)",
     "issued": false,
-    "completed": false,
+    "completed": true,
     "completedBy": "negativ14",
     "completedPR": 4929
   },
@@ -737,7 +737,7 @@
     "mainColor": "oklch(70.0% 0.165 295.0 / 1)",
     "secondaryColor": "oklch(80.0% 0.125 285.0 / 1)",
     "issued": false,
-    "completed": false,
+    "completed": true,
     "completedBy": "raunitpatel",
     "completedPR": 5193
   },
@@ -761,7 +761,7 @@
     "mainColor": "oklch(90.0% 0.075 225.0 / 1)",
     "secondaryColor": "oklch(80.0% 0.055 235.0 / 1)",
     "issued": false,
-    "completed": false,
+    "completed": true,
     "completedBy": "Godson-Ozioma",
     "completedPR": 5020
   },
@@ -772,7 +772,7 @@
     "backgroundColor": "oklch(23.0% 0.028 70.0 / 1)",
     "mainColor": "oklch(70.0% 0.145 20.0 / 1)",
     "secondaryColor": "oklch(68.0% 0.095 75.0 / 1)",
-    "issued": false,
+    "issued": true,
     "completed": false,
     "completedBy": "Godson-Ozioma",
     "completedPR": 5019
