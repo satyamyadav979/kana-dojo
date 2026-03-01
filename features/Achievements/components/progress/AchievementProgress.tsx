@@ -41,7 +41,7 @@ const AchievementProgress = () => {
       />
 
       {/* Category Tabs & Achievement Grid */}
-      <div className='px-6 py-6'>
+      <div className='px-3 py-6 sm:px-6'>
         <div className='mx-auto max-w-6xl'>
           <CategoryTabs
             selectedCategory={selectedCategory}
