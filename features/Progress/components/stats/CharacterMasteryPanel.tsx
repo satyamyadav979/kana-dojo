@@ -282,7 +282,7 @@ export default function CharacterMasteryPanel({
           </div>
 
           {/* Pill-style filter tabs with smooth sliding animation */}
-          <div className='flex gap-1 rounded-[22px] bg-(--background-color) p-1.5'>
+          <div className='flex gap-0 rounded-[22px] bg-(--background-color) p-0'>
             {CONTENT_FILTERS.map(filter => {
               const isSelected = contentFilter === filter.value;
               return (
@@ -291,7 +291,7 @@ export default function CharacterMasteryPanel({
                   {isSelected && (
                     <motion.div
                       layoutId='activeFilterTab'
-                      className='absolute inset-0 rounded-2xl border-b-10 border-(--main-color-accent) bg-(--main-color)'
+                      className='absolute inset-0 rounded-[22px] border-b-10 border-(--main-color-accent) bg-(--main-color)'
                       transition={{
                         type: 'spring',
                         stiffness: 300,
@@ -302,7 +302,7 @@ export default function CharacterMasteryPanel({
                   <button
                     onClick={() => setContentFilter(filter.value)}
                     className={cn(
-                      'relative z-10 cursor-pointer rounded-2xl px-4 pt-2 pb-4 text-sm font-semibold transition-colors duration-300',
+                      'relative z-10 cursor-pointer rounded-[22px] px-4 pt-2 pb-4 text-sm font-semibold transition-colors duration-300',
                       isSelected
                         ? 'text-(--background-color)'
                         : 'text-(--secondary-color)/70 hover:text-(--main-color)',
