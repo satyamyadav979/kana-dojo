@@ -697,7 +697,7 @@
     "note": "Reason marker in Kyushu. (Set 4)",
     "id": 70,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "dialect": "よか",
@@ -726,7 +726,7 @@
     "region": "Nagoya",
     "note": "Strong Nagoya marker. (Set 4)",
     "id": 73,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
