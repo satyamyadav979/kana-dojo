@@ -663,7 +663,7 @@
     "jlpt": "N2",
     "id": 74,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "漢字の意味を文脈で推測する力が大切だ。",
@@ -672,7 +672,7 @@
     "jlpt": "N2",
     "id": 75,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "週末は友達と映画を見に行くつもりです。",
@@ -680,7 +680,7 @@
     "english": "I plan to go to a movie with friends this weekend.",
     "jlpt": "N4",
     "id": 76,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
