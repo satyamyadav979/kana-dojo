@@ -196,7 +196,7 @@ export default function BlitzStatsPanel({
           </div>
 
           {/* Pill tabs with smooth sliding animation */}
-          <div className='flex gap-0 rounded-2xl bg-(--background-color) p-0'>
+          <div className='flex gap-0 rounded-3xl bg-(--background-color) p-0'>
             {CONTENT_TABS.map(tab => {
               const isSelected = activeTab === tab.value;
               return (
@@ -205,7 +205,7 @@ export default function BlitzStatsPanel({
                   {isSelected && (
                     <motion.div
                       layoutId='activeBlitzTab'
-                      className='absolute inset-0 rounded-2xl border-b-10 border-(--main-color-accent) bg-(--main-color)'
+                      className='absolute inset-0 rounded-3xl border-b-10 border-(--main-color-accent) bg-(--main-color)'
                       transition={{
                         type: 'spring',
                         stiffness: 300,
@@ -216,7 +216,7 @@ export default function BlitzStatsPanel({
                   <button
                     onClick={() => setActiveTab(tab.value)}
                     className={cn(
-                      'relative z-10 cursor-pointer rounded-2xl px-5 pt-2 pb-4 text-sm font-semibold transition-colors duration-300',
+                      'relative z-10 cursor-pointer rounded-3xl px-5 pt-2 pb-4 text-sm font-semibold transition-colors duration-300',
                       isSelected
                         ? 'text-(--background-color)'
                         : 'text-(--secondary-color)/70 hover:text-(--main-color)',
