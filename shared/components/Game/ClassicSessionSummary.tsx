@@ -1,18 +1,8 @@
 'use client';
 
-import clsx from 'clsx';
-import {
-  ArrowLeft,
-  RotateCcw,
-  CheckCircle,
-  XCircle,
-  Flame,
-  Star,
-  Target,
-} from 'lucide-react';
-import { ActionButton } from '@/shared/components/ui/ActionButton';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import { motion } from 'framer-motion';
+import React from 'react';
+import { ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { RotateCcw } from 'lucide-react';
 
 interface ClassicSessionSummaryProps {
   title?: string;
@@ -26,8 +16,8 @@ interface ClassicSessionSummaryProps {
 }
 
 export default function ClassicSessionSummary({
-  title = 'Session Summary',
-  subtitle = 'Your session was saved.',
+  title = 'session summary',
+  subtitle = 'your session was saved.',
   correct,
   wrong,
   bestStreak,
@@ -38,179 +28,138 @@ export default function ClassicSessionSummary({
   const total = correct + wrong;
   const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0;
 
-  const chartData = [
-    { name: 'Correct', value: correct, color: 'var(--main-color)' },
-    { name: 'Wrong', value: wrong, color: 'var(--secondary-color)' },
-  ];
+  const pieData =
+    total > 0
+      ? [
+          { name: 'correct', value: correct },
+          { name: 'wrong', value: wrong },
+        ]
+      : [{ name: 'empty', value: 1 }];
 
   return (
-    <div className='fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-(--background-color)/90 p-4 backdrop-blur-md'>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: 'easeOut' }}
-        className='relative w-full max-w-4xl space-y-8 overflow-hidden rounded-[2rem] border border-(--border-color) bg-(--card-color) p-8 shadow-2xl'
-      >
-        {/* Decorative background gradients */}
-        <div className='pointer-events-none absolute -top-32 -right-32 h-64 w-64 rounded-full bg-(--main-color) opacity-20 blur-[100px]' />
-        <div className='pointer-events-none absolute -bottom-32 -left-32 h-64 w-64 rounded-full bg-(--secondary-color) opacity-20 blur-[100px]' />
-
-        <div className='relative z-10 text-center'>
-          <h2 className='mb-2 text-4xl font-black tracking-tight text-(--main-color)'>
+    <div className='fixed inset-0 z-50 flex h-full w-full flex-col overflow-y-auto bg-(--background-color)'>
+      <div className='mx-auto flex min-h-screen w-full max-w-[1400px] flex-1 flex-col justify-center px-6 py-12 sm:px-12 sm:py-24 lg:p-24'>
+        {/* Header */}
+        <div className='relative mt-10 mb-16 flex flex-col gap-2 select-none lg:mt-0 lg:mb-24'>
+          <h1 className='text-4xl font-black tracking-tighter text-(--main-color) lowercase sm:text-5xl lg:text-7xl'>
             {title}
-          </h2>
-          <p className='text-base font-medium text-(--secondary-color)'>
+          </h1>
+          <p className='text-xl tracking-tight text-(--secondary-color) lowercase opacity-80 sm:text-2xl'>
             {subtitle}
           </p>
         </div>
 
-        <div className='relative z-10 flex flex-col items-center gap-10 md:flex-row'>
-          {/* Left side: Chart */}
-          <div className='relative flex aspect-square w-full max-w-[280px] items-center justify-center md:w-1/2'>
-            {total > 0 ? (
-              <ResponsiveContainer width='100%' height='100%'>
-                <PieChart>
-                  <Pie
-                    data={chartData}
-                    cx='50%'
-                    cy='50%'
-                    innerRadius='70%'
-                    outerRadius='90%'
-                    paddingAngle={5}
-                    dataKey='value'
-                    stroke='none'
-                    cornerRadius={10}
-                    animationDuration={1500}
-                    animationEasing='ease-out'
-                  >
-                    {chartData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
-                    ))}
-                  </Pie>
-                  <Tooltip
-                    contentStyle={{
-                      borderRadius: '1rem',
-                      border: '1px solid var(--border-color)',
-                      backgroundColor: 'var(--card-color)',
-                    }}
-                    itemStyle={{ fontWeight: 'bold' }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
-            ) : (
-              <div className='flex h-full w-full items-center justify-center rounded-full border-8 border-(--border-color) opacity-50' />
-            )}
+        {/* Main Content: Stats + Chart */}
+        <div className='mb-16 flex flex-1 flex-col items-center justify-between gap-16 lg:flex-row lg:items-start lg:gap-24'>
+          {/* Stats Grid */}
+          <div className='grid w-full flex-1 grid-cols-2 gap-x-8 gap-y-16 lg:grid-cols-3 lg:gap-x-16 lg:gap-y-24'>
+            <div className='col-span-2 flex flex-wrap gap-12 select-text sm:gap-24 lg:col-span-3 lg:gap-32'>
+              <div className='flex flex-col'>
+                <span className='mb-2 text-xl text-(--secondary-color) lowercase opacity-80 select-none sm:text-2xl'>
+                  accuracy
+                </span>
+                <span className='text-[5rem] leading-none font-black tracking-tighter text-(--main-color) sm:text-9xl xl:text-[11rem]'>
+                  {accuracy}%
+                </span>
+              </div>
+              <div className='flex flex-col'>
+                <span className='mb-2 text-xl text-(--secondary-color) lowercase opacity-80 select-none sm:text-2xl'>
+                  correct
+                </span>
+                <div className='flex items-baseline text-[5rem] leading-none font-black tracking-tighter text-(--main-color) sm:text-9xl xl:text-[11rem]'>
+                  {correct}
+                  <span className='ml-2 text-4xl tracking-tight text-(--secondary-color) opacity-40 sm:text-6xl lg:ml-4 xl:text-8xl'>
+                    /{total}
+                  </span>
+                </div>
+              </div>
+            </div>
 
-            <div className='pointer-events-none absolute inset-0 flex flex-col items-center justify-center'>
-              <motion.span
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, type: 'spring' }}
-                className='text-5xl font-black text-(--main-color)'
-              >
-                {accuracy}%
-              </motion.span>
-              <span className='mt-1 text-xs font-bold tracking-[0.2em] text-(--secondary-color) uppercase'>
-                Accuracy
+            <div className='flex flex-col'>
+              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
+                wrong
+              </span>
+              <span className='text-5xl leading-none font-black tracking-tighter text-(--secondary-color) sm:text-6xl xl:text-[5.5rem]'>
+                {wrong}
+              </span>
+            </div>
+
+            <div className='flex flex-col'>
+              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
+                best streak
+              </span>
+              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-6xl xl:text-[5.5rem]'>
+                {bestStreak}
+              </span>
+            </div>
+
+            <div className='col-span-2 flex flex-col lg:col-span-1'>
+              <span className='mb-2 text-lg text-(--secondary-color) lowercase opacity-80 select-none sm:text-xl'>
+                stars
+              </span>
+              <span className='text-5xl leading-none font-black tracking-tighter text-(--main-color) sm:text-6xl xl:text-[5.5rem]'>
+                {stars}
               </span>
             </div>
           </div>
 
-          {/* Right side: Stats Grid */}
-          <div className='grid w-full grid-cols-2 gap-4 md:w-1/2'>
-            <StatCard
-              icon={<CheckCircle size={20} />}
-              label='Correct'
-              value={correct}
-              className='text-(--main-color)'
-              delay={0.1}
-            />
-            <StatCard
-              icon={<XCircle size={20} />}
-              label='Wrong'
-              value={wrong}
-              className='text-(--secondary-color)'
-              delay={0.2}
-            />
-            <StatCard
-              icon={<Flame size={20} />}
-              label='Best Streak'
-              value={bestStreak}
-              className='text-(--main-color)'
-              delay={0.3}
-            />
-            <StatCard
-              icon={<Star size={20} />}
-              label='Stars'
-              value={stars}
-              className='text-(--secondary-color)'
-              delay={0.4}
-            />
-            <StatCard
-              icon={<Target size={20} />}
-              label='Attempts'
-              value={total}
-              className='col-span-2 text-(--main-color)'
-              delay={0.5}
-            />
+          {/* Chart Section */}
+          <div className='relative flex aspect-square w-full max-w-[280px] flex-col items-center justify-center select-none sm:max-w-[360px] xl:max-w-[480px]'>
+            <ResponsiveContainer width='100%' height='100%'>
+              <PieChart>
+                <Pie
+                  data={pieData}
+                  cx='50%'
+                  cy='50%'
+                  innerRadius='88%'
+                  outerRadius='100%'
+                  paddingAngle={total > 0 && correct > 0 && wrong > 0 ? 3 : 0}
+                  dataKey='value'
+                  stroke='none'
+                  startAngle={90}
+                  endAngle={-270}
+                  isAnimationActive={false}
+                >
+                  {total > 0 ? (
+                    <>
+                      <Cell fill='var(--main-color)' />
+                      <Cell fill='var(--secondary-color)' opacity={0.6} />
+                    </>
+                  ) : (
+                    <Cell fill='var(--border-color)' opacity={0.2} />
+                  )}
+                </Pie>
+              </PieChart>
+            </ResponsiveContainer>
+
+            <div className='pointer-events-none absolute inset-0 flex flex-col items-center justify-center'>
+              <span className='mb-1 text-6xl leading-none font-black tracking-tighter text-(--main-color) sm:text-7xl xl:text-[6rem]'>
+                {accuracy}%
+              </span>
+              <span className='sm:text-md text-sm tracking-[0.3em] text-(--secondary-color) uppercase opacity-80'>
+                accuracy
+              </span>
+            </div>
           </div>
         </div>
 
-        <div className='relative z-10 flex gap-4 pt-4'>
-          <ActionButton
-            onClick={onBackToSelection}
-            colorScheme='secondary'
-            borderColorScheme='secondary'
-            borderBottomThickness={10}
-            borderRadius='3xl'
-            className='flex-1 py-4 text-base font-bold'
-          >
-            <ArrowLeft size={20} className='mr-2' />
-            Back to Selection
-          </ActionButton>
-          <ActionButton
+        {/* Action Buttons */}
+        <div className='mt-auto flex flex-wrap items-center gap-6 pt-12 select-none'>
+          <button
             onClick={onNewSession}
-            borderBottomThickness={10}
-            borderRadius='3xl'
-            className='flex-1 py-4 text-base font-bold'
+            className='flex items-center justify-center gap-3 rounded bg-(--main-color) px-10 py-5 text-xl font-bold text-(--background-color) lowercase outline-hidden sm:text-2xl'
           >
-            <RotateCcw size={20} className='mr-2' />
-            New Session
-          </ActionButton>
+            <RotateCcw size={28} strokeWidth={2.5} />
+            next session
+          </button>
+          <button
+            onClick={onBackToSelection}
+            className='flex items-center justify-center gap-3 rounded border-[3px] border-(--secondary-color) bg-transparent px-10 py-5 text-xl font-bold text-(--secondary-color) lowercase opacity-80 outline-hidden sm:text-2xl'
+          >
+            menu
+          </button>
         </div>
-      </motion.div>
+      </div>
     </div>
-  );
-}
-
-function StatCard({
-  icon,
-  label,
-  value,
-  className,
-  delay = 0,
-}: {
-  icon: React.ReactNode;
-  label: string;
-  value: string | number;
-  className?: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: delay, ease: 'easeOut' }}
-      whileHover={{ scale: 1.05 }}
-      className='flex flex-col items-center justify-center rounded-2xl border border-(--border-color) bg-(--background-color) p-4 text-center transition-shadow hover:shadow-lg'
-    >
-      <div className={clsx('mb-2 opacity-80', className)}>{icon}</div>
-      <p className={clsx('text-3xl font-black drop-shadow-sm', className)}>
-        {value}
-      </p>
-      <p className='mt-1 text-xs font-bold tracking-wider text-(--secondary-color) uppercase'>
-        {label}
-      </p>
-    </motion.div>
   );
 }
