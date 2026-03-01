@@ -26,7 +26,7 @@ export const CategoryTabs = ({
   getCategoryStats,
 }: CategoryTabsProps) => {
   return (
-    <div className='mb-8 flex flex-wrap justify-center gap-2 sm:gap-4'>
+    <div className='mb-8 flex flex-wrap justify-center gap-x-2 gap-y-4 sm:gap-4'>
       {categories.map((category, index) => {
         const categoryStats = getCategoryStats(category.id);
         const CategoryIcon = category.icon;
