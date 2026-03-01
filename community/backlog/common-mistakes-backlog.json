@@ -116,7 +116,7 @@
     "correct": "日本へ旅行に行きたい。",
     "explanation": "Use に行く for purpose. (Pattern set 1)",
     "id": 15,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
