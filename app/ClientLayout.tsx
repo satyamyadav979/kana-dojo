@@ -67,8 +67,13 @@ export default function ClientLayout({
   children: React.ReactNode;
 }>) {
   // Redundant comment for deployment trigger
-  // Trigger redeployment - 2026-02-08
+  // Trigger redeployment - 2026-02-26
   // Redundant no-op comment to force a fresh Vercel deployment
+  // Force deployment check - v2
+  // Deployment trigger #3
+  // Deployment trigger #4 - keep this harmless no-op comment
+  // Redeploy trigger - redundant whitespaceless comment
+  // Redeploy trigger - second redundant comment to force redeploy (no-op)
   const { theme, font } = usePreferencesStore(
     useShallow(state => ({ theme: state.theme, font: state.font })),
   );

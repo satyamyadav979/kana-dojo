@@ -14,6 +14,7 @@ import { useCrazyModeTrigger } from '@/features/CrazyMode/hooks/useCrazyModeTrig
 import { getGlobalAdaptiveSelector } from '@/shared/lib/adaptiveSelection';
 import { GameBottomBar } from '@/shared/components/Game/GameBottomBar';
 import { isKanaInputAnswerCorrect } from '@/features/Kana/lib/isKanaInputAnswerCorrect';
+import useClassicSessionStore from '@/shared/store/useClassicSessionStore';
 
 // Get the global adaptive selector for weighted character selection
 const adaptiveSelector = getGlobalAdaptiveSelector();
@@ -40,6 +41,7 @@ interface InputGameProps {
 }
 
 const InputGame = ({ isHidden, isReverse = false }: InputGameProps) => {
+  const logAttempt = useClassicSessionStore(state => state.logAttempt);
   const {
     score,
     setScore,
@@ -236,6 +238,16 @@ const InputGame = ({ isHidden, isReverse = false }: InputGameProps) => {
     // Reset wrong streak on correct answer (Requirement 10.2)
     resetWrongStreak();
     setBottomBarState('correct');
+    logAttempt({
+      questionId: correctChar,
+      questionPrompt: correctChar,
+      expectedAnswers: [String(targetChar)],
+      userAnswer: inputValue.trim(),
+      inputKind: 'type',
+      isCorrect: true,
+      timeTakenMs: answerTimeMs,
+      extra: { isReverse },
+    });
   };
 
   const handleWrongAnswer = (wrongInput: string) => {
@@ -256,6 +268,15 @@ const InputGame = ({ isHidden, isReverse = false }: InputGameProps) => {
     // Track wrong streak for achievements (Requirement 10.2)
     incrementWrongStreak();
     setBottomBarState('wrong');
+    logAttempt({
+      questionId: correctChar,
+      questionPrompt: correctChar,
+      expectedAnswers: [String(targetChar)],
+      userAnswer: wrongInput,
+      inputKind: 'type',
+      isCorrect: false,
+      extra: { isReverse },
+    });
   };
 
   const handleContinue = useCallback(() => {

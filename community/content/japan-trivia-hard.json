@@ -69,6 +69,39 @@
     "Bering Sea"
   ],
   "correctIndex": 0
+},
+{
+  "question": "Which sea separates Japan from the Korean Peninsula?",
+  "difficulty": "hard",
+  "answers": [
+    "Sea of Japan",
+    "East China Sea",
+    "Philippine Sea",
+    "Bering Sea"
+  ],
+  "correctIndex": 0
+},
+{
+  "question": "Which Japanese city is known for its historic wooden district, Gion? (Community variation 29)",
+  "difficulty": "hard",
+  "answers": [
+    "Kyoto",
+    "Yokohama",
+    "Nagoya",
+    "Sendai"
+  ],
+  "correctIndex": 0
+},
+{
+  "question": "Which Japanese island chain is known for tropical beaches and coral reefs? (Community variation 27)",
+  "difficulty": "hard",
+  "answers": [
+    "Okinawa",
+    "Sado",
+    "Awaji",
+    "Oki"
+  ],
+  "correctIndex": 0
 }
 ]
 
