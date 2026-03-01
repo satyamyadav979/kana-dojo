@@ -309,7 +309,7 @@
     "mainColor": "oklch(82.0% 0.165 195.0 / 1)",
     "secondaryColor": "oklch(90.0% 0.125 180.0 / 1)",
     "issued": false,
-    "completed": false,
+    "completed": true,
     "completedBy": "saip77",
     "completedPR": 4994
   },
@@ -376,7 +376,7 @@
     "backgroundColor": "oklch(13.0% 0.058 295.0 / 1)",
     "mainColor": "oklch(78.0% 0.195 45.0 / 1)",
     "secondaryColor": "oklch(70.0% 0.220 310.0 / 1)",
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
