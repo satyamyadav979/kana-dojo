@@ -59,22 +59,22 @@ const ProgressBar = ({ percentage }: ProgressBarProps) => (
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.5 }}
-    className='mx-auto mt-6 max-w-md'
+    className='mx-auto mt-8 max-w-2xl'
   >
-    <div className='mb-2 flex items-center justify-between'>
-      <span className='text-sm font-medium text-(--main-color)'>
+    <div className='mb-3 flex items-center justify-between'>
+      <span className='text-lg font-semibold text-(--secondary-color)'>
         Overall Progress
       </span>
-      <span className='text-sm font-bold text-(--main-color)'>
+      <span className='text-xl font-bold text-(--main-color)'>
         {Math.round(percentage)}%
       </span>
     </div>
-    <div className='h-4 w-full rounded-full bg-(--card-color)'>
+    <div className='h-6 w-full rounded-full bg-(--card-color)'>
       <motion.div
         initial={{ width: 0 }}
         animate={{ width: `${percentage}%` }}
         transition={{ duration: 1.5, ease: 'easeOut' }}
-        className='h-4 rounded-full'
+        className='h-6 rounded-full'
         style={{
           background:
             'linear-gradient(to right, var(--secondary-color), var(--main-color))',
