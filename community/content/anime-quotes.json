@@ -118,7 +118,7 @@
     "anime": "JoJo's Bizarre Adventure: Stardust Crusaders",
     "character": "DIO"
   },
-  { 
+  {
     "japanese": "俺を誰だと思ってやがる!",
     "romaji": "Ore o dare da to omotte yagaru!",
     "english": "Who the hell do you think I am!",
@@ -133,10 +133,17 @@
     "character": "Dio Brando"
   },
   {
-  "japanese": "まだだ、まだ終わらんよ！",
-  "romaji": "Mada da, mada owaran yo!",
-  "english": "Not yet! It's not over yet! (alt wording 22)",
-  "anime": "Mobile Suit Gundam",
-  "character": "Char Aznable"
-}
+    "japanese": "まだだ、まだ終わらんよ！",
+    "romaji": "Mada da, mada owaran yo!",
+    "english": "Not yet! It's not over yet! (alt wording 22)",
+    "anime": "Mobile Suit Gundam",
+    "character": "Char Aznable"
+  },
+  {
+    "japanese": "さらに向こうへ!プルスウルトラ!",
+    "romaji": "Sarani mukou e! Purusu Urutora!",
+    "english": "Go beyond! Plus Ultra!",
+    "anime": "My Hero Academia",
+    "character": "All Might"
+  }
 ]
