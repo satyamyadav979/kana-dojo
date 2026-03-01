@@ -31,7 +31,7 @@ export const AchievementCard = ({
   return (
     <div
       className={clsx(
-        'relative flex h-full flex-col overflow-hidden p-6',
+        'relative flex w-full flex-col overflow-hidden p-6',
         isUnlocked
           ? 'rounded-2xl bg-(--card-color)'
           : 'rounded-none border-x-0 border-y border-(--border-color) bg-(--background-color) opacity-80',
@@ -73,7 +73,7 @@ export const AchievementCard = ({
         </div>
       </div>
 
-      <div className='flex h-full flex-col space-y-4'>
+      <div className='flex flex-1 flex-col space-y-4'>
         {/* Achievement icon and title */}
         <div className='flex items-center gap-4'>
           <div
@@ -171,7 +171,7 @@ export const AchievementCard = ({
               Unlocked
             </div>
           ) : (
-            <div className='rounded-full border border-(--border-color) bg-(--background-color) px-2 py-1 text-xs text-(--secondary-color)/70'>
+            <div className='rounded-full  border-(--border-color) bg-(--background-color) px-2 py-1 text-xs text-(--secondary-color)/70'>
               Locked
             </div>
           )}
