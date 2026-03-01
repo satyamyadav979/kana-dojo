@@ -515,7 +515,7 @@
     "mainColor": "oklch(82.0% 0.135 85.0 / 1)",
     "secondaryColor": "oklch(65.0% 0.165 40.0 / 1)",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": "ghost-parade",
@@ -525,7 +525,7 @@
     "mainColor": "oklch(88.0% 0.065 285.0 / 1)",
     "secondaryColor": "oklch(70.0% 0.145 340.0 / 1)",
     "issued": false,
-    "completed": false,
+    "completed": true,
     "completedBy": "Prasad3Suryavanshi",
     "completedPR": 5087
   },
@@ -536,7 +536,7 @@
     "backgroundColor": "oklch(24.0% 0.028 65.0 / 1)",
     "mainColor": "oklch(72.0% 0.085 70.0 / 1)",
     "secondaryColor": "oklch(60.0% 0.065 55.0 / 1)",
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
