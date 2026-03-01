@@ -726,7 +726,7 @@
     "meaning": "Extremely busy and desperate for help. (Set 5)",
     "id": 81,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "japanese": "頭が上がらない",
@@ -734,7 +734,7 @@
     "english": "Cannot raise one’s head",
     "meaning": "Feel indebted or unable to oppose someone. (Set 5)",
     "id": 82,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
