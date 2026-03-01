@@ -37,8 +37,8 @@ export default function ClassicSessionSummary({
       : [{ name: 'empty', value: 1 }];
 
   return (
-    <div className='fixed inset-0 z-50 flex h-full w-full flex-col overflow-hidden bg-(--background-color)'>
-      <div className='mx-auto flex h-full w-full max-w-[1200px] flex-1 flex-col justify-center px-4 py-8 sm:px-8 sm:py-12 lg:px-16 lg:py-8 lg:pb-32'>
+    <div className='fixed inset-0 z-50 flex h-full w-full flex-col overflow-x-hidden overflow-y-auto bg-(--background-color)'>
+      <div className='mx-auto flex min-h-full w-full max-w-[1200px] flex-1 flex-col justify-center px-4 py-12 sm:min-h-[100dvh] sm:px-8 sm:py-16 lg:px-16 lg:py-12 lg:pb-32'>
         {/* Header */}
         <div className='relative mt-4 mb-8 flex flex-col gap-1 select-none sm:mb-10 lg:mt-0 lg:mb-12'>
           <h1 className='text-3xl font-black tracking-tighter text-(--main-color) lowercase sm:text-4xl lg:text-5xl'>
