@@ -164,17 +164,17 @@ export default function ClassicSessionSummary({
         </div>
 
         {/* Action Buttons */}
-        <div className='mt-auto flex flex-wrap items-center gap-4 pt-4 select-none'>
+        <div className='mt-auto flex w-full items-center gap-2 pt-4 select-none sm:w-auto sm:gap-4'>
           <button
             onClick={onNewSession}
-            className='flex items-center justify-center gap-2 rounded bg-(--main-color) px-8 py-4 text-lg font-bold text-(--background-color) lowercase outline-hidden transition-opacity hover:opacity-90 sm:text-xl'
+            className='flex flex-1 cursor-pointer items-center justify-center gap-2 rounded bg-(--main-color) px-4 py-4 text-base font-bold text-(--background-color) lowercase outline-hidden transition-opacity hover:opacity-90 sm:flex-none sm:px-8 sm:text-lg xl:text-xl'
           >
-            <RotateCcw size={24} strokeWidth={2.5} />
+            <RotateCcw className='h-5 w-5 sm:h-6 sm:w-6' strokeWidth={2.5} />
             next session
           </button>
           <button
             onClick={onBackToSelection}
-            className='flex items-center justify-center gap-2 rounded border-[3px] border-(--secondary-color) bg-transparent px-8 py-4 text-lg font-bold text-(--secondary-color) lowercase opacity-80 outline-hidden transition-opacity hover:opacity-100 sm:text-xl'
+            className='flex flex-1 cursor-pointer items-center justify-center gap-2 rounded border-[3px] border-(--secondary-color) bg-transparent px-4 py-4 text-base font-bold text-(--secondary-color) lowercase opacity-80 outline-hidden transition-opacity hover:opacity-100 sm:flex-none sm:px-8 sm:text-lg xl:text-xl'
           >
             menu
           </button>
