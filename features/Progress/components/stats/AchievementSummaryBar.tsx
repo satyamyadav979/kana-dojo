@@ -123,7 +123,7 @@ export default function AchievementSummaryBar({
         <div className='flex flex-wrap items-center gap-8 sm:gap-12'>
           <StatItem
             icon={Star}
-            label='Points'
+            label='XP'
             value={totalPoints.toLocaleString()}
             index={0}
           />
