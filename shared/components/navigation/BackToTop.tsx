@@ -8,15 +8,15 @@ import { useClick } from '@/shared/hooks/useAudio';
 const animationKeyframes = `
 @keyframes explode-btt {
   0% {
-    transform: translateY(-50%) scale(1);
+    transform: scale(1);
     opacity: 1;
   }
   50% {
-    transform: translateY(-50%) scale(2.4);
+    transform: scale(1.6);
     opacity: 0.5;
   }
   100% {
-    transform: translateY(-50%) scale(4);
+    transform: scale(2);
     opacity: 0;
   }
 }
