@@ -31,10 +31,10 @@ export const AchievementCard = ({
   return (
     <div
       className={clsx(
-        'relative overflow-hidden rounded-2xl p-6',
+        'relative overflow-hidden p-6',
         isUnlocked
-          ? 'bg-(--card-color)'
-          : 'border border-(--border-color) bg-(--background-color) opacity-80',
+          ? 'rounded-2xl bg-(--card-color)'
+          : 'rounded-none border-x-0 border-y border-(--border-color) bg-(--background-color) opacity-80',
       )}
     >
       {/* Gradient overlay for unlocked achievements */}
