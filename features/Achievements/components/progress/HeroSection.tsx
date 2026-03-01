@@ -69,7 +69,7 @@ const ProgressBar = ({ percentage }: ProgressBarProps) => (
         {Math.round(percentage)}%
       </span>
     </div>
-    <div className='h-8 w-full rounded-full bg-(--card-color) p-1'>
+    <div className='h-8 w-full overflow-hidden rounded-full bg-(--card-color)'>
       <motion.div
         initial={{ width: 0 }}
         animate={{ width: `${percentage}%` }}
