@@ -410,19 +410,19 @@
   {
     "id": 69,
     "text": "\"〜ものの\" means \"although...\" with contrast.",
-    "completed": false,
+    "completed": true,
     "issued": false
   },
   {
     "id": 70,
     "text": "\"〜まま\" means \"as-is / while remaining...\".",
-    "completed": false,
+    "completed": true,
     "issued": false
   },
   {
     "id": 71,
     "text": "\"〜わけにはいかない\" means \"cannot (due to circumstances)\".",
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
