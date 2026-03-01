@@ -199,6 +199,7 @@ export const useAchievementProgress = () => {
       if (isUnlocked) {
         current = Math.max(current, target);
       }
+      current = Math.min(current, target);
 
       const completionPercentage =
         target > 0 ? Math.min((current / target) * 100, 100) : 100;

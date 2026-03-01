@@ -122,20 +122,10 @@ export const AchievementCard = ({
         {/* Progress bar (now always shown) */}
         <div className='space-y-2'>
           <div className='flex items-center justify-between'>
-            <span
-              className={clsx(
-                'text-sm font-medium',
-                isUnlocked ? 'text-(--secondary-color)' : 'text-(--main-color)',
-              )}
-            >
+            <span className='text-sm font-medium text-(--secondary-color)'>
               Progress
             </span>
-            <span
-              className={clsx(
-                'text-sm font-bold',
-                isUnlocked ? 'text-(--secondary-color)' : 'text-(--main-color)',
-              )}
-            >
+            <span className='text-sm font-bold text-(--main-color)'>
               {progress.isPercentage
                 ? `${Math.round(progress.current)}%`
                 : `${Math.round(progress.current)}/${Math.round(progress.target)}`}

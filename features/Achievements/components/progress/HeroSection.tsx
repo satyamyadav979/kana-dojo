@@ -19,18 +19,44 @@ const StatCard = ({ value, label, index }: StatCardProps) => (
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.1 * (index + 1) }}
-    className='relative overflow-hidden rounded-3xl p-[1.5px]'
+    className={clsx(
+      'relative overflow-hidden rounded-3xl p-6 text-center',
+      'bg-linear-to-br from-(--card-color) to-(--card-color)',
+    )}
   >
-    {/* Full gradient border background */}
+    {/* Top gradient accent bar */}
     <motion.div
-      className='absolute inset-0 bg-linear-to-br from-(--main-color) via-(--secondary-color) to-(--main-color)'
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      className='absolute top-0 right-0 left-0 h-1.5 rounded-t-3xl bg-linear-to-r from-(--main-color) via-(--secondary-color) to-(--main-color)'
+      initial={{ opacity: 0, scaleX: 0 }}
+      animate={{ opacity: 1, scaleX: 1 }}
       transition={{ duration: 0.8, delay: index * 0.08 + 0.3 }}
     />
 
-    {/* Inner content wrapper */}
-    <div className='relative z-10 flex h-full flex-col items-center justify-center rounded-[calc(var(--radius-3xl)-1.5px)] bg-(--card-color) p-6 text-center'>
+    {/* Bottom gradient accent bar */}
+    <motion.div
+      className='absolute right-0 bottom-0 left-0 h-1.5 rounded-b-3xl bg-linear-to-r from-(--main-color) via-(--secondary-color) to-(--main-color)'
+      initial={{ opacity: 0, scaleX: 0 }}
+      animate={{ opacity: 1, scaleX: 1 }}
+      transition={{ duration: 0.8, delay: index * 0.08 + 0.35 }}
+    />
+
+    {/* Left gradient accent bar */}
+    <motion.div
+      className='absolute top-0 bottom-0 left-0 w-1.5 rounded-l-3xl bg-linear-to-b from-(--main-color) via-(--secondary-color) to-(--main-color)'
+      initial={{ opacity: 0, scaleY: 0 }}
+      animate={{ opacity: 1, scaleY: 1 }}
+      transition={{ duration: 0.8, delay: index * 0.08 + 0.4 }}
+    />
+
+    {/* Right gradient accent bar */}
+    <motion.div
+      className='absolute top-0 right-0 bottom-0 w-1.5 rounded-r-3xl bg-linear-to-b from-(--main-color) via-(--secondary-color) to-(--main-color)'
+      initial={{ opacity: 0, scaleY: 0 }}
+      animate={{ opacity: 1, scaleY: 1 }}
+      transition={{ duration: 0.8, delay: index * 0.08 + 0.45 }}
+    />
+
+    <div className='relative z-10'>
       <div className='mb-1 text-3xl font-bold text-(--main-color)'>{value}</div>
       <div className='text-sm text-(--secondary-color)'>{label}</div>
     </div>
