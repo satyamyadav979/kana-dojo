@@ -59,22 +59,22 @@ const ProgressBar = ({ percentage }: ProgressBarProps) => (
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ delay: 0.5 }}
-    className='mx-auto mt-8 max-w-2xl'
+    className='mx-auto mt-10 max-w-4xl'
   >
-    <div className='mb-3 flex items-center justify-between'>
-      <span className='text-lg font-semibold text-(--secondary-color)'>
+    <div className='mb-3 flex items-center justify-between px-2'>
+      <span className='text-xl font-bold text-(--secondary-color)'>
         Overall Progress
       </span>
-      <span className='text-xl font-bold text-(--main-color)'>
+      <span className='text-2xl font-black text-(--main-color)'>
         {Math.round(percentage)}%
       </span>
     </div>
-    <div className='h-6 w-full rounded-full bg-(--card-color)'>
+    <div className='h-8 w-full rounded-full bg-(--card-color) p-1'>
       <motion.div
         initial={{ width: 0 }}
         animate={{ width: `${percentage}%` }}
         transition={{ duration: 1.5, ease: 'easeOut' }}
-        className='h-6 rounded-full'
+        className='h-full rounded-full'
         style={{
           background:
             'linear-gradient(to right, var(--secondary-color), var(--main-color))',
@@ -130,6 +130,9 @@ export const HeroSection = ({
             Track your Japanese learning journey and celebrate your milestones
           </p>
 
+          {/* Overall Progress */}
+          <ProgressBar percentage={completionPercentage} />
+
           {/* Stats Cards */}
           <div className='mx-auto mt-8 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-4'>
             {stats.map((stat, index) => (
@@ -141,9 +144,6 @@ export const HeroSection = ({
               />
             ))}
           </div>
-
-          {/* Overall Progress */}
-          <ProgressBar percentage={completionPercentage} />
         </motion.div>
       </div>
     </div>
