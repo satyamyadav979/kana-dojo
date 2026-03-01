@@ -74,9 +74,7 @@ const Info = () => {
         <ChevronUp
           className={clsx(
             'duration-250',
-            'text-(--border-color)',
-            'max-md:group-active:text-(--secondary-color)',
-            'md:group-hover:text-(--secondary-color)',
+            'text-(--secondary-color)',
             !showInfo && 'rotate-180',
           )}
           size={24}

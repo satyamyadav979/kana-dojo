@@ -126,9 +126,7 @@ const KanaCards = ({ filter = 'all' }: { filter?: KanaCardsFilter }) => {
 
   const chevronClasses = (hidden: boolean) =>
     clsx(
-      'duration-300 text-(--border-color)',
-      'max-md:group-active:text-(--main-color)',
-      'md:group-hover:text-(--main-color)',
+      'duration-300 text-(--secondary-color)',
       hidden && 'rotate-180',
     );
 

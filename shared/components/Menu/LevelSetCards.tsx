@@ -403,9 +403,7 @@ const LevelSetCards = <TLevel extends string, TItem>({
             >
               <ChevronUp
                 className={clsx(
-                  'text-(--border-color) duration-250',
-                  'max-md:group-active:text-(--secondary-color)',
-                  'md:group-hover:text-(--secondary-color)',
+                  'text-(--secondary-color) duration-250',
                   collapsedRows.includes(rowIndex) && 'rotate-180',
                 )}
                 size={28}
