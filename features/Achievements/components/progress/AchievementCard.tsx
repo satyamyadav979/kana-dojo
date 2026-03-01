@@ -146,11 +146,10 @@ export const AchievementCard = ({
               initial={{ width: 0 }}
               animate={{ width: `${progress.completionPercentage}%` }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
-              className='h-3 rounded-full'
+              className={clsx('h-3 rounded-full', !isUnlocked && 'opacity-60')}
               style={{
-                background: isUnlocked
-                  ? 'var(--secondary-color)'
-                  : 'linear-gradient(to right, var(--secondary-color), var(--main-color))',
+                background:
+                  'linear-gradient(to right, var(--secondary-color), var(--main-color))',
               }}
             />
           </div>
@@ -173,7 +172,7 @@ export const AchievementCard = ({
                 isUnlocked ? 'text-(--main-color)' : 'text-(--secondary-color)',
               )}
             >
-              {achievement.points} points
+              {achievement.points} XP
             </span>
           </div>
 
