@@ -213,7 +213,7 @@
     "id": 36,
     "fact": "Japan has a 'Black Company' award given to employers with the worst working conditions - a form of public shaming for labor violations.",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": 37,
@@ -261,30 +261,30 @@
     "id": 44,
     "fact": "Japan has a unique 4-4-9 emergency number system: 110 for police, 119 for fire/ambulance, and 118 for coast guard emergencies.",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": 45,
     "fact": "The Japanese word 'mono no aware' (物の哀れ) describes the bittersweetness of passing time and the gentle sadness of things.",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": 46,
     "fact": "Japan's Shibuya Crossing sees up to 3,000 people cross at once during peak times - making it the busiest pedestrian intersection in the world.",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": 47,
     "fact": "There's a Japanese concept called 'ikigai' (生き甲斐) - your reason for being - found at the intersection of what you love, need, and can be paid for.",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": 48,
     "fact": "Japan has robots that serve as Buddhist priests conducting funeral ceremonies - complete with chanting and prayer beads.",
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
