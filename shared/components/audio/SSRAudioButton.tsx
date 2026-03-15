@@ -32,7 +32,8 @@ const SSRAudioButton: React.FC<SSRAudioButtonProps> = props => {
     return null;
   }
 
-  return <AudioButton {...props} />;
+  // Temporarily disabled
+  return null;
 };
 
 export default SSRAudioButton;

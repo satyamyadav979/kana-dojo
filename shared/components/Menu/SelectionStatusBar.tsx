@@ -162,7 +162,7 @@ const SelectionStatusBar = () => {
             className={clsx(
               'flex flex-row items-center justify-center gap-2 md:gap-4',
               'w-full',
-              'px-4 py-3',
+              'px-4 py-2 sm:py-3',
             )}
           >
             {/* Selected Levels Info */}

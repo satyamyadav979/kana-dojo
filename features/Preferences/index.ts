@@ -21,8 +21,8 @@ export type {
 } from './facade';
 
 // Components (page-level)
-export { default as ThemesModal } from './components/ThemesModal';
-export { default as FontsModal } from './components/FontsModal';
+export { default as ThemesModal } from './components/modals/ThemesModal';
+export { default as FontsModal } from './components/modals/FontsModal';
 
 // Data (read-only) - Note: Import defaults, not named exports
 export { default as themeSets } from './data/themes/themes';

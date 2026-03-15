@@ -32,6 +32,60 @@ jobs:
               return new Promise(function(resolve) { setTimeout(resolve, ms); });
             }
 
+            async function resolvePrByHeadSha(headSha) {
+              if (!headSha) {
+                return null;
+              }
+              try {
+                const { data: associatedPrs } = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  commit_sha: headSha
+                });
+                const openPr = (associatedPrs || []).find(function(pr) { return pr.state === 'open'; });
+                return openPr || (associatedPrs || [])[0] || null;
+              } catch (error) {
+                console.log(`Could not resolve PR from SHA ${headSha}: ${error.message}`);
+                return null;
+              }
+            }
+
+            async function resolvePrByHeadRef(headOwner, headBranch, expectedHeadSha) {
+              if (!headOwner || !headBranch) {
+                return null;
+              }
+              try {
+                const { data: pulls } = await github.rest.pulls.list({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  state: 'open',
+                  head: `${headOwner}:${headBranch}`,
+                  per_page: 20
+                });
+
+                const exactShaMatch = (pulls || []).find(function(pr) {
+                  return pr && pr.head && pr.head.sha === expectedHeadSha;
+                });
+                if (exactShaMatch) {
+                  return exactShaMatch;
+                }
+
+                return (pulls || [])[0] || null;
+              } catch (error) {
+                console.log(`Could not resolve PR from head ref ${headOwner}:${headBranch}: ${error.message}`);
+                return null;
+              }
+            }
+
+            async function listAllPrFiles(prNumber) {
+              return await github.paginate(github.rest.pulls.listFiles, {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber,
+                per_page: 100
+              });
+            }
+
             let prNumber = null;
             let expectedHeadSha = null;
 
@@ -39,12 +93,22 @@ jobs:
               const run = context.payload.workflow_run;
               const prs = run.pull_requests || [];
 
-              if (!prs.length) {
-                console.log('No pull request associated with this workflow_run');
-                return;
+              if (prs.length > 0 && prs[0].number) {
+                prNumber = prs[0].number;
+              } else {
+                let fallbackPr = await resolvePrByHeadSha(run.head_sha);
+                if (!fallbackPr || !fallbackPr.number) {
+                  const headOwner = run.head_repository && run.head_repository.owner && run.head_repository.owner.login
+                    ? run.head_repository.owner.login
+                    : null;
+                  fallbackPr = await resolvePrByHeadRef(headOwner, run.head_branch, run.head_sha);
+                }
+                if (!fallbackPr || !fallbackPr.number) {
+                  console.log(`No pull request associated with workflow_run ${run.id}; skipping.`);
+                  return;
+                }
+                prNumber = fallbackPr.number;
               }
-
-              prNumber = prs[0].number;
               expectedHeadSha = run.head_sha;
             } else {
               const pr = context.payload.pull_request;
@@ -85,15 +149,38 @@ jobs:
               return;
             }
 
-            const labels = (pr.labels || []).map(function(l) { return l.name; });
+            const files = await listAllPrFiles(prNumber);
+            const allowedPrefixes = ['community/content/'];
+            const allowedFiles = new Set(['package-lock.json']);
 
-            if (!labels.includes('community-auto-merge')) {
-              console.log(`PR #${prNumber} is not marked for auto-merge`);
+            const outsideFiles = files
+              .map(function(file) { return file.filename; })
+              .filter(function(filename) {
+                if (allowedFiles.has(filename)) return false;
+                return !allowedPrefixes.some(function(prefix) { return filename.startsWith(prefix); });
+              });
+
+            if (outsideFiles.length > 0) {
+              console.log(`PR #${prNumber} touches non-community files; skipping auto-merge. Examples: ${outsideFiles.slice(0, 5).join(', ')}`);
+              return;
+            }
+
+            const invalidOps = files
+              .filter(function(file) {
+                if (!file.filename.startsWith('community/content/')) {
+                  return false;
+                }
+                return file.status === 'removed' || file.status === 'renamed';
+              })
+              .map(function(file) { return `${file.filename} (${file.status})`; });
+
+            if (invalidOps.length > 0) {
+              console.log(`PR #${prNumber} has disallowed file operations for auto-merge: ${invalidOps.join(', ')}`);
               return;
             }
 
             if (context.eventName === 'pull_request_target') {
-              const { data: runs } = await github.rest.actions.listWorkflowRunsForWorkflow({
+              const { data: runs } = await github.request('GET /repos/{owner}/{repo}/actions/workflows/{workflow_id}/runs', {
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 workflow_id: 'pr-check.yml',
@@ -109,7 +196,7 @@ jobs:
             }
 
             if (pr.mergeable === false) {
-              console.log(`PR #${prNumber} is not mergeable`);
+              console.log(`PR #${prNumber} has merge conflicts or is not mergeable; leaving it open for manual intervention.`);
               return;
             }
 
@@ -127,16 +214,8 @@ jobs:
               } catch (e) {
                 console.log(`Merge attempt ${i} failed: ${e.message}`);
                 if (e.status === 409) {
-                  try {
-                    await github.rest.pulls.updateBranch({
-                      owner: context.repo.owner,
-                      repo: context.repo.repo,
-                      pull_number: prNumber
-                    });
-                    console.log(`Requested branch update for PR #${prNumber}`);
-                  } catch (updateErr) {
-                    console.log(`Could not update branch: ${updateErr.message}`);
-                  }
+                  console.log(`PR #${prNumber} has merge conflicts; leaving it open for manual intervention.`);
+                  return;
                 }
                 if (i < MAX_RETRIES) {
                   await sleep(5000);

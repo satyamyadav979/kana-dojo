@@ -2,6 +2,7 @@
 import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import { removeLocaleFromPath } from '@/shared/lib/pathUtils';
+import { Sparkles } from 'lucide-react';
 
 const Banner = () => {
   const pathname = usePathname();
@@ -11,16 +12,16 @@ const Banner = () => {
   const isVocabRoute = pathWithoutLocale.startsWith('/vocabulary');
   const isPreferencesRoute = pathWithoutLocale === '/preferences';
 
-  const subheading =
-    isKanaRoute
-      ? 'Kana あ'
-      : isKanjiRoute
-        ? 'Kanji 字'
-        : isVocabRoute
-          ? 'Vocabulary 語'
-          : isPreferencesRoute
-            ? 'Preferences 設'
-            : '';
+  const subheading = isKanaRoute
+    ? 'Kana あ'
+    : isKanjiRoute
+      ? 'Kanji 字'
+      : isVocabRoute
+        ? 'Vocabulary 語'
+        : isPreferencesRoute
+          ? 'Preferences'
+          : '';
+
   return (
     <h2
       className={clsx(
@@ -28,8 +29,8 @@ const Banner = () => {
         'flex items-center gap-2 overflow-hidden',
       )}
     >
-      <span className='text-(--secondary-color)'>
-        {subheading.split(' ')[1]}
+      <span className='flex items-center justify-center text-(--secondary-color)'>
+        {isPreferencesRoute ? <Sparkles size={28} /> : subheading.split(' ')[1]}
       </span>
       <span>{subheading.split(' ')[0]}</span>
     </h2>
