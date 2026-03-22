@@ -3,7 +3,7 @@
 <br/>
 <br/>
 <a href="https://vercel.com/oss">
-  <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge.svg" />
+  <img alt="Vercel OSS Program" src="https://vercel.com/oss/program-badge-2026.svg" />
 </a>
 <br/>
 <br/>
@@ -49,7 +49,7 @@ This README is available in multiple languages:
 
 ## About
 
-KanaDojo is an engaging web-based Japanese learning platform that makes mastering Hiragana, Katakana, Kanji, and Vocabulary fun and intuitive. Built with a focus on aesthetics, customization, and effective learning, it provides an immersive training environment for Japanese language learners at all levels.
+KanaDojo is an engaging and user-friendly web-based Japanese learning platform that makes mastering Hiragana, Katakana, Kanji, and Vocabulary fun and intuitive. Built with a focus on aesthetics, customization, and effective learning, it provides an immersive and engaging training environment for Japanese language learners at all levels.
 
 ## Contributing
 
