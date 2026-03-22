@@ -177,7 +177,6 @@ export default function BackToTop() {
       onClick={handleClick}
       className={clsx(
         'fixed top-[calc(var(--stable-vh)/2)] right-2 z-[60] -translate-y-1/2 md:top-1/2 lg:right-3',
-        'border-(--border-color) max-md:border-2',
         'inline-flex items-center justify-center rounded-full',
         'p-2 transition-all duration-200 md:p-3',
         'bg-(--main-color) text-(--background-color) md:bg-(--secondary-color) md:hover:bg-(--main-color)',

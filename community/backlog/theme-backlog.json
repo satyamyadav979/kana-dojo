@@ -587,7 +587,7 @@
     "mainColor": "oklch(88.0% 0.195 115.0 / 1)",
     "secondaryColor": "oklch(82.0% 0.175 350.0 / 1)",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": "pearl-wave",
@@ -597,7 +597,9 @@
     "mainColor": "oklch(88.0% 0.055 245.0 / 1)",
     "secondaryColor": "oklch(68.0% 0.165 215.0 / 1)",
     "issued": false,
-    "completed": false
+    "completed": true,
+    "completedBy": "baleashvar",
+    "completedPR": 9654
   },
   {
     "id": "kimono-silk",
@@ -775,7 +777,9 @@
     "mainColor": "oklch(65.0% 0.025 270.0 / 1)",
     "secondaryColor": "oklch(72.0% 0.165 25.0 / 1)",
     "issued": false,
-    "completed": false
+    "completed": true,
+    "completedBy": "baleashvar",
+    "completedPR": 9642
   },
   {
     "id": "cherry-cola",
@@ -875,7 +879,9 @@
     "mainColor": "oklch(40.0% 0.145 255.0 / 1)",
     "secondaryColor": "oklch(60.0% 0.175 20.0 / 1)",
     "issued": false,
-    "completed": false
+    "completed": true,
+    "completedBy": "sachincse",
+    "completedPR": 9606
   },
   {
     "id": "street-lantern",
@@ -1020,8 +1026,8 @@
     "secondaryColor": "oklch(72.0% 0.135 75.0 / 1)",
     "issued": false,
     "completed": true,
-    "completedBy": "krishnavallabha",
-    "completedPR": 9166
+    "completedBy": "baleashvar",
+    "completedPR": 9640
   },
   {
     "id": "yukata-breeze",
@@ -1160,7 +1166,7 @@
     "backgroundColor": "oklch(20.0% 0.020 70.0 / 1)",
     "mainColor": "oklch(85.0% 0.155 85.0 / 1)",
     "secondaryColor": "oklch(60.0% 0.085 25.0 / 1)",
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -1251,7 +1257,9 @@
     "mainColor": "oklch(70.0% 0.105 145.0 / 1)",
     "secondaryColor": "oklch(60.0% 0.055 110.0 / 1)",
     "issued": false,
-    "completed": false
+    "completed": true,
+    "completedBy": "KAUSHALK123",
+    "completedPR": 9638
   },
   {
     "id": "midnight-sushi",
@@ -1355,7 +1363,7 @@
     "mainColor": "oklch(55.0% 0.145 145.0 / 1)",
     "secondaryColor": "oklch(70.0% 0.085 120.0 / 1)",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": "plum-ink",
@@ -1364,7 +1372,7 @@
     "backgroundColor": "oklch(16.0% 0.030 280.0 / 1)",
     "mainColor": "oklch(72.0% 0.145 330.0 / 1)",
     "secondaryColor": "oklch(60.0% 0.075 260.0 / 1)",
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -1515,7 +1523,7 @@
     "mainColor": "oklch(72.0% 0.155 35.0 / 1)",
     "secondaryColor": "oklch(58.0% 0.035 240.0 / 1)",
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "id": "tangerine-fizz",
@@ -1524,7 +1532,7 @@
     "backgroundColor": "oklch(94.0% 0.015 80.0 / 1)",
     "mainColor": "oklch(70.0% 0.195 55.0 / 1)",
     "secondaryColor": "oklch(80.0% 0.125 95.0 / 1)",
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {

@@ -12,6 +12,12 @@
     "meaning": "Enjoy observing; you don't always need to participate"
   },
   {
+    "japanese": "月とすっぽん",
+    "romaji": "Tsuki to suppon",
+    "english": "The moon and a turtle",
+    "meaning": "Vastly different; not comparable"
+  },
+  {
     "japanese": "猫に鰹節",
     "romaji": "Neko ni katsuobushi",
     "english": "Dried bonito to a cat",
@@ -411,5 +417,37 @@
   "romaji": "Uogokoro areba mizugokoro",
   "english": "If fish has heart, water has heart",
   "meaning": "Good intentions will be reciprocated"
+},
+{
+  "japanese": "早起きは三文の得",
+  "romaji": "Hayaoki wa sanmon no toku",
+  "english": "Early rising is worth three coins",
+  "meaning": "Good things come from getting up early"
+}
+
+,
+{
+  "japanese": "月とすっぽん",
+  "romaji": "Tsuki to suppon",
+  "english": "The moon and a turtle",
+  "meaning": "Vastly different; not comparable"
+},
+  {
+  "japanese": "無い袖は振れぬ",
+  "romaji": "Nai sode wa furenu",
+  "english": "You can't shake a sleeve you don't have",
+  "meaning": "You can't give what you don't have"
+},
+  {
+  "japanese": "転ばぬ先の杖",
+  "romaji": "Korobanu saki no tsue",
+  "english": "A cane before falling",
+  "meaning": "Prevention is better than cure"
+},
+  {
+  "japanese": "三人寄れば文殊の知恵",
+  "romaji": "Sannin yoreba monju no chie",
+  "english": "Three people together have the wisdom of Monju",
+  "meaning": "Two heads are better than one"
 }
 ]

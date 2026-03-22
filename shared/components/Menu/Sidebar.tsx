@@ -558,7 +558,7 @@ const Sidebar = () => {
       id='main-sidebar'
       className={clsx(
         'flex lg:flex-col lg:items-start',
-        'lg:sticky lg:top-0 lg:h-screen lg:overflow-x-hidden lg:overflow-y-auto',
+        'lg:sticky lg:relative lg:top-0 lg:h-screen lg:overflow-x-hidden lg:overflow-y-auto',
         'lg:pt-6',
         'max-lg:fixed max-lg:bottom-0 max-lg:w-full',
         'max-lg:bg-(--card-color)',
@@ -666,8 +666,7 @@ const Sidebar = () => {
       <button
         onClick={toggleDesktopSidebarCollapse}
         className={clsx(
-          'mt-auto mb-5 hidden w-full cursor-pointer items-center rounded-2xl px-3 py-1.5 text-(--secondary-color) transition-colors hover:bg-(--card-color) hover:text-(--main-color) lg:flex',
-          isDesktopSidebarCollapsed ? 'justify-center' : 'justify-start gap-2',
+          'hidden cursor-pointer items-center rounded-2xl px-3 py-1.5 text-(--secondary-color) transition-colors hover:bg-(--card-color) hover:text-(--main-color) lg:absolute lg:bottom-8 lg:left-5 lg:flex',
         )}
         aria-label={
           isDesktopSidebarCollapsed
@@ -680,7 +679,6 @@ const Sidebar = () => {
         ) : (
           <PanelLeftClose className='h-5 w-5 shrink-0' />
         )}
-        {!isDesktopSidebarCollapsed && <span>Collapse</span>}
       </button>
     </aside>
   );

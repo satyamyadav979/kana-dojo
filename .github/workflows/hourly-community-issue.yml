@@ -1200,7 +1200,11 @@ jobs:
 
               const tmpl = t.wallpaperUrl;
               const common = t.common;
-              issueTitle = t.buildIssueTitle(pickEmoji(), tmpl.title.replace('{id}', item.id));
+              issueTitle = common.shortTitleTemplate
+                .replace('{emoji}', pickEmoji())
+                .replace('{issueType}', 'Wallpaper URL')
+                .replace('{id}', item.id)
+                .trim();
               const instructions = [
                 '1. Star our repo ⭐',
                 '2. Fork our repo 🍴',
@@ -1241,7 +1245,11 @@ jobs:
 
               const tmpl = t.communityNote;
               const common = t.common;
-              issueTitle = t.buildIssueTitle(pickEmoji(), tmpl.title.replace('{id}', item.id));
+              issueTitle = common.shortTitleTemplate
+                .replace('{emoji}', pickEmoji())
+                .replace('{issueType}', 'Community Note Line')
+                .replace('{id}', item.id)
+                .trim();
               const instructions = [
                 '1. Star our repo ⭐',
                 '2. Fork our repo 🍴',
@@ -1520,3 +1528,4 @@ jobs:
           print(json.dumps(payload))
           PY
           curl -sf -H "Content-Type: application/json" -X POST -d @/tmp/payload.json "$DISCORD_WEBHOOK"
+
