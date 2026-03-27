@@ -6,6 +6,9 @@ import { cn } from '@/shared/lib/utils';
 import { useClick } from '@/shared/hooks/generic/useAudio';
 import { Joystick, Palette, Wand2 } from 'lucide-react';
 
+const badgeClasses =
+  'flex h-9 w-9 items-center justify-center rounded-2xl border-b-6 border-(--main-color-accent) bg-(--main-color) text-(--background-color) shadow-[0_2px_0_var(--main-color-accent)]';
+
 const ACTIVE_SECTION_OFFSET = 156;
 const NAV_CLICK_SUPPRESSION_MS = 3000;
 const SCROLL_TIMEOUT_MS = 350;
@@ -179,7 +182,9 @@ const PreferencesSectionNav = () => {
                   aria-label={section.label}
                   aria-current={isSelected ? 'location' : undefined}
                 >
-                  <Icon className='h-5 w-5 shrink-0' />
+                  <span className={badgeClasses}>
+                    <Icon className='h-4 w-4 shrink-0' />
+                  </span>
                   <span className='hidden sm:inline'>{section.label}</span>
                 </a>
               </div>
