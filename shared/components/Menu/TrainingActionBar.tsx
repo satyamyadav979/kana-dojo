@@ -5,7 +5,7 @@ import { KanaGauntlet, useKanaSelection } from '@/features/Kana';
 import { KanjiGauntlet, useKanjiSelection } from '@/features/Kanji';
 import { useVocabSelection, VocabGauntlet } from '@/features/Vocabulary';
 import { useInputPreferences } from '@/features/Preferences';
-import { useClick } from '@/shared/hooks/useAudio';
+import { useClick } from '@/shared/hooks/generic/useAudio';
 import { Play, Zap, Swords } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import GameModes from '@/shared/components/Menu/GameModes';
@@ -38,7 +38,8 @@ const TrainingActionBar: React.FC<ITopBarProps> = ({
   const { selectedKanji: selectedKanjiObjs } = useKanjiSelection();
 
   // Vocab store
-  const { selectedVocab: selectedWordObjs } = useVocabSelection();
+  const { selectedVocab: selectedWordObjs, selectedSets: selectedVocabSets } =
+    useVocabSelection();
 
   const isFilled =
     currentDojo === 'kana'
@@ -46,7 +47,7 @@ const TrainingActionBar: React.FC<ITopBarProps> = ({
       : currentDojo === 'kanji'
         ? selectedKanjiObjs.length >= 10
         : currentDojo === 'vocabulary'
-          ? selectedWordObjs.length >= 10
+          ? selectedVocabSets.length > 0 || selectedWordObjs.length > 0
           : false;
 
   const buttonRef = useRef<HTMLButtonElement | null>(null);

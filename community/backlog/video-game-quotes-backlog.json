@@ -6,7 +6,7 @@
     "game": "The Prince of Tennis: Sweat & Tears 2",
     "character": "Ryoma Echizen",
     "id": 1,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -66,7 +66,7 @@
     "game": "Dragon Quest series",
     "character": "Recurring command voice",
     "id": 7,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -76,7 +76,7 @@
     "game": "Kingdom Hearts series (JP dub)",
     "character": "Sora",
     "id": 8,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -96,7 +96,7 @@
     "game": "Dragon Quest XI",
     "character": "Hero / party lines",
     "id": 10,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -126,7 +126,7 @@
     "game": "Final Fantasy Type-0",
     "character": "Class Zero",
     "id": 13,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -216,7 +216,7 @@
     "game": "Fate/stay night [Realta Nua]",
     "character": "Saber",
     "id": 22,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -346,7 +346,7 @@
     "game": "Fire Emblem series",
     "character": "Various protagonists",
     "id": 35,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -396,7 +396,7 @@
     "game": "Samurai game proverb line",
     "character": "Musashi reference",
     "id": 40,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -416,7 +416,7 @@
     "game": "Fate/stay night [Realta Nua]",
     "character": "Saber",
     "id": 42,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -476,7 +476,7 @@
     "game": "Kingdom Hearts series (JP dub)",
     "character": "Sora",
     "id": 48,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -516,7 +516,7 @@
     "game": "Pokemon series",
     "character": "Rival characters",
     "id": 52,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -716,7 +716,7 @@
     "game": "Pokemon series",
     "character": "Rival characters",
     "id": 72,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -876,7 +876,7 @@
     "game": "Kingdom Hearts series (JP dub)",
     "character": "Sora",
     "id": 88,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -986,7 +986,7 @@
     "game": "Tales series",
     "character": "Various endings",
     "id": 99,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -1116,7 +1116,7 @@
     "game": "Pokemon series",
     "character": "Rival characters",
     "id": 112,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -1166,7 +1166,7 @@
     "game": "Persona 5 Strikers",
     "character": "Joker",
     "id": 117,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {

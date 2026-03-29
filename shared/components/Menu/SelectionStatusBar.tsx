@@ -7,7 +7,7 @@ import { useKanaSelection } from '@/features/Kana';
 import { getSelectionLabels } from '@/shared/lib/selectionFormatting';
 import { usePathname } from 'next/navigation';
 import { removeLocaleFromPath } from '@/shared/lib/pathUtils';
-import { useClick } from '@/shared/hooks/useAudio';
+import { useClick } from '@/shared/hooks/generic/useAudio';
 import { CircleCheck, Trash } from 'lucide-react';
 import { ActionButton } from '@/shared/components/ui/ActionButton';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -162,7 +162,7 @@ const SelectionStatusBar = () => {
             className={clsx(
               'flex flex-row items-center justify-center gap-2 md:gap-4',
               'w-full',
-              'px-4 py-3',
+              'px-4 py-2 sm:py-3',
             )}
           >
             {/* Selected Levels Info */}
@@ -190,7 +190,7 @@ const SelectionStatusBar = () => {
               borderColorScheme='main'
               borderRadius='3xl'
               borderBottomThickness={10}
-              className='w-auto bg-(--main-color)/80 px-4 py-3 lg:px-6'
+              className='w-auto bg-(--main-color)/80 px-4 py-3 lg:px-6 animate-float [--float-distance:-4px] sm:[--float-distance:-6px]'
               onClick={handleClear}
               aria-label='Clear selected levels'
             >

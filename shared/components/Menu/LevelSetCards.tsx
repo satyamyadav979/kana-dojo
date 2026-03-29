@@ -15,8 +15,8 @@ import {
 
 import { chunkArray } from '@/shared/lib/helperFunctions';
 import { cardBorderStyles } from '@/shared/lib/styles';
-import useGridColumns from '@/shared/hooks/useGridColumns';
-import { useClick } from '@/shared/hooks/useAudio';
+import useGridColumns from '@/shared/hooks/generic/useGridColumns';
+import { useClick } from '@/shared/hooks/generic/useAudio';
 import { ActionButton } from '@/shared/components/ui/ActionButton';
 import QuickSelectModal from '@/shared/components/Modals/QuickSelectModal';
 import { cn } from '@/shared/lib/utils';
@@ -387,34 +387,38 @@ const LevelSetCards = <TLevel extends string, TItem>({
             key={`row-${rowIndex}`}
             className={clsx('flex flex-col gap-4 py-4', cardBorderStyles)}
           >
-            <h3
-              onClick={() => {
-                playClick();
-                setCollapsedRows(prev =>
-                  prev.includes(rowIndex)
-                    ? prev.filter(i => i !== rowIndex)
-                    : [...prev, rowIndex],
-                );
-              }}
-              className={clsx(
-                'group ml-4 flex flex-row items-center gap-2 rounded-xl text-3xl hover:cursor-pointer',
-                collapsedRows.includes(rowIndex) && 'mb-1.5',
-              )}
-            >
-              <ChevronUp
+            <h3 className='w-full'>
+              <button
+                type='button'
+                onClick={() => {
+                  playClick();
+                  setCollapsedRows(prev =>
+                    prev.includes(rowIndex)
+                      ? prev.filter(i => i !== rowIndex)
+                      : [...prev, rowIndex],
+                  );
+                }}
                 className={clsx(
-                  'text-(--border-color) duration-250',
-                  'max-md:group-active:text-(--secondary-color)',
-                  'md:group-hover:text-(--secondary-color)',
-                  collapsedRows.includes(rowIndex) && 'rotate-180',
+                  'group ml-4 flex w-full flex-row items-center gap-2 rounded-xl text-3xl hover:cursor-pointer',
+                  collapsedRows.includes(rowIndex) && 'mb-1.5',
                 )}
-                size={28}
-              />
-              <span className='max-lg:hidden'>
-                Levels {firstSetNumber}
-                {firstSetNumber !== lastSetNumber ? `-${lastSetNumber}` : ''}
-              </span>
-              <span className='lg:hidden'>Level {firstSetNumber}</span>
+                aria-expanded={!collapsedRows.includes(rowIndex)}
+              >
+                <ChevronUp
+                  className={clsx(
+                    'text-(--border-color) duration-250',
+                    'max-md:group-active:text-(--secondary-color)',
+                    'md:group-hover:text-(--secondary-color)',
+                    collapsedRows.includes(rowIndex) && 'rotate-180',
+                  )}
+                  size={28}
+                />
+                <span className='max-lg:hidden'>
+                  Levels {firstSetNumber}
+                  {firstSetNumber !== lastSetNumber ? `-${lastSetNumber}` : ''}
+                </span>
+                <span className='lg:hidden'>Level {firstSetNumber}</span>
+              </button>
             </h3>
 
             {!collapsedRows.includes(rowIndex) && (

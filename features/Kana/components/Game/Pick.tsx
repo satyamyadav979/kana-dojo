@@ -5,7 +5,7 @@ import { kana } from '@/features/Kana/data/kana';
 import useKanaStore from '@/features/Kana/store/useKanaStore';
 import { CircleCheck, CircleX } from 'lucide-react';
 import { Random } from 'random-js';
-import { useCorrect, useError } from '@/shared/hooks/useAudio';
+import { useCorrect, useError } from '@/shared/hooks/generic/useAudio';
 // import GameIntel from '@/shared/components/Game/GameIntel';
 import { buttonBorderStyles } from '@/shared/lib/styles';
 import { pickGameKeyMappings } from '@/shared/lib/keyMappings';
@@ -15,10 +15,11 @@ import { useShallow } from 'zustand/react/shallow';
 import Stars from '@/shared/components/Game/Stars';
 import { useCrazyModeTrigger } from '@/features/CrazyMode/hooks/useCrazyModeTrigger';
 import { getGlobalAdaptiveSelector } from '@/shared/lib/adaptiveSelection';
-import { useSmartReverseMode } from '@/shared/hooks/useSmartReverseMode';
-import { useProgressiveDifficulty } from '@/shared/hooks/useProgressiveDifficulty';
-import { useWordBuildingMode } from '@/shared/hooks/useWordBuildingMode';
+import { useSmartReverseMode } from '@/shared/hooks/game/useSmartReverseMode';
+import { useAdaptiveOptionCount } from '@/shared/hooks/game/useAdaptiveOptionCount';
+import { useWordBuildingMode } from '@/shared/hooks/game/useWordBuildingMode';
 import WordBuildingGame from './WordBuildingGame';
+import useClassicSessionStore from '@/shared/store/useClassicSessionStore';
 
 const random = new Random();
 
@@ -87,13 +88,14 @@ interface PickGameProps {
 }
 
 const PickGame = ({ isHidden }: PickGameProps) => {
+  const logAttempt = useClassicSessionStore(state => state.logAttempt);
   const { isReverse, decideNextMode, recordWrongAnswer } =
     useSmartReverseMode();
   const {
     optionCount,
     recordCorrect: recordDifficultyCorrect,
     recordWrong: recordDifficultyWrong,
-  } = useProgressiveDifficulty({
+  } = useAdaptiveOptionCount({
     minOptions: 3,
     maxOptions: 6,
     streakPerLevel: 5,
@@ -363,6 +365,19 @@ const PickGame = ({ isHidden }: PickGameProps) => {
       }
       // Reset wrong streak on correct answer (Requirement 10.2)
       resetWrongStreak();
+      logAttempt({
+        questionId: correctChar,
+        questionPrompt: isReverse
+          ? correctRomajiCharReverse
+          : correctKanaChar,
+        expectedAnswers: [isReverse ? correctKanaCharReverse : correctRomajiChar],
+        userAnswer: isReverse ? correctKanaCharReverse : correctRomajiChar,
+        inputKind: 'pick',
+        isCorrect: true,
+        timeTakenMs: answerTimeMs,
+        optionsShown: shuffledVariants,
+        extra: { isReverse },
+      });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [
@@ -380,6 +395,13 @@ const PickGame = ({ isHidden }: PickGameProps) => {
       incrementKatakanaCorrect,
       recordAnswerTime,
       resetWrongStreak,
+      logAttempt,
+      correctKanaChar,
+      correctKanaCharReverse,
+      correctRomajiChar,
+      correctRomajiCharReverse,
+      shuffledVariants,
+      isReverse,
       // speedStopwatch, adaptiveSelector intentionally excluded
     ],
   );
@@ -407,6 +429,16 @@ const PickGame = ({ isHidden }: PickGameProps) => {
       recordDifficultyWrong();
       // Track wrong streak for achievements (Requirement 10.2)
       incrementWrongStreak();
+      logAttempt({
+        questionId: isReverse ? correctRomajiCharReverse : correctKanaChar,
+        questionPrompt: isReverse ? correctRomajiCharReverse : correctKanaChar,
+        expectedAnswers: [isReverse ? correctKanaCharReverse : correctRomajiChar],
+        userAnswer: selectedChar,
+        inputKind: 'pick',
+        isCorrect: false,
+        optionsShown: shuffledVariants,
+        extra: { isReverse },
+      });
     },
     [
       wrongSelectedAnswers,
@@ -422,6 +454,10 @@ const PickGame = ({ isHidden }: PickGameProps) => {
       recordWrongAnswer,
       recordDifficultyWrong,
       incrementWrongStreak,
+      logAttempt,
+      correctKanaCharReverse,
+      correctRomajiChar,
+      shuffledVariants,
     ],
   );
 

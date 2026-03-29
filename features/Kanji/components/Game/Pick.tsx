@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useMemo, memo } from 'react';
 import { CircleCheck, CircleX } from 'lucide-react';
 import { Random } from 'random-js';
 import useKanjiStore, { IKanjiObj } from '@/features/Kanji/store/useKanjiStore';
-import { useCorrect, useError } from '@/shared/hooks/useAudio';
+import { useCorrect, useError } from '@/shared/hooks/generic/useAudio';
 import { buttonBorderStyles } from '@/shared/lib/styles';
 // import GameIntel from '@/shared/components/Game/GameIntel';
 import { pickGameKeyMappings } from '@/shared/lib/keyMappings';
@@ -17,9 +17,10 @@ import SSRAudioButton from '@/shared/components/audio/SSRAudioButton';
 import FuriganaText from '@/shared/components/text/FuriganaText';
 import { useCrazyModeTrigger } from '@/features/CrazyMode/hooks/useCrazyModeTrigger';
 import { getGlobalAdaptiveSelector } from '@/shared/lib/adaptiveSelection';
-import { useSmartReverseMode } from '@/shared/hooks/useSmartReverseMode';
-import { useWordBuildingMode } from '@/shared/hooks/useWordBuildingMode';
+import { useSmartReverseMode } from '@/shared/hooks/game/useSmartReverseMode';
+import { useWordBuildingMode } from '@/shared/hooks/game/useWordBuildingMode';
 import WordBuildingGame from './WordBuildingGame';
+import useClassicSessionStore from '@/shared/store/useClassicSessionStore';
 
 const random = new Random();
 
@@ -101,6 +102,7 @@ interface KanjiPickGameProps {
 }
 
 const KanjiPickGame = ({ selectedKanjiObjs, isHidden }: KanjiPickGameProps) => {
+  const logAttempt = useClassicSessionStore(state => state.logAttempt);
   const { isReverse, decideNextMode, recordWrongAnswer } =
     useSmartReverseMode();
 
@@ -337,6 +339,17 @@ const KanjiPickGame = ({ selectedKanjiObjs, isHidden }: KanjiPickGameProps) => {
     incrementKanjiCorrect(selectedKanjiCollection.toUpperCase());
     // Reset wrong streak on correct answer (Requirement 10.2)
     resetWrongStreak();
+    logAttempt({
+      questionId: correctChar,
+      questionPrompt: String(displayChar),
+      expectedAnswers: [String(targetChar)],
+      userAnswer: String(targetChar),
+      inputKind: 'pick',
+      isCorrect: true,
+      timeTakenMs: answerTimeMs,
+      optionsShown: shuffledOptions,
+      extra: { isReverse },
+    });
   };
 
   const handleWrongAnswer = (selectedOption: string) => {
@@ -356,6 +369,16 @@ const KanjiPickGame = ({ selectedKanjiObjs, isHidden }: KanjiPickGameProps) => {
     recordWrongAnswer();
     // Track wrong streak for achievements (Requirement 10.2)
     incrementWrongStreak();
+    logAttempt({
+      questionId: correctChar,
+      questionPrompt: String(displayChar),
+      expectedAnswers: [String(targetChar)],
+      userAnswer: selectedOption,
+      inputKind: 'pick',
+      isCorrect: false,
+      optionsShown: shuffledOptions,
+      extra: { isReverse },
+    });
   };
 
   const generateNewCharacter = () => {

@@ -23,7 +23,7 @@
     "explanation": "コンセント means electrical outlet. (Set 1)",
     "example": "コンセントが足りないので延長コードを使います。",
     "id": 3,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -32,7 +32,7 @@
     "explanation": "Often means slim/stylish, not necessarily intelligent. (Set 1)",
     "example": "彼はスマートな着こなしをしている。",
     "id": 4,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -42,7 +42,7 @@
     "example": "ライブでテンションが上がった。",
     "id": 5,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "バイキング (baikingu)",
@@ -50,8 +50,8 @@
     "explanation": "Usually means buffet/all-you-can-eat in Japan. (Set 1)",
     "example": "ホテルの朝食はバイキングです。",
     "id": 6,
-    "issued": true,
-    "completed": false
+    "issued": false,
+    "completed": true
   },
   {
     "termA": "カンニング (kanningu)",
@@ -59,7 +59,7 @@
     "explanation": "カンニング means cheating on tests. (Set 1)",
     "example": "試験でカンニングしてはいけません。",
     "id": 7,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -86,7 +86,7 @@
     "explanation": "Often means sensitive/delicate in Japanese. (Set 1)",
     "example": "彼は意外とナイーブな性格だ。",
     "id": 10,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -96,7 +96,7 @@
     "example": "ノートにシールを貼った。",
     "id": 11,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ホッチキス (hocchikisu)",
@@ -132,7 +132,7 @@
     "example": "彼はチームのナンバー1だ。",
     "id": 15,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ハイテンション (haitenshon)",
@@ -159,7 +159,7 @@
     "example": "父は都内でサラリーマンをしている。",
     "id": 18,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ペットボトル (petto botoru)",
@@ -222,7 +222,7 @@
     "example": "ライブでテンションが上がった。",
     "id": 25,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "バイキング (baikingu)",
@@ -230,7 +230,7 @@
     "explanation": "Usually means buffet/all-you-can-eat in Japan. (Set 2)",
     "example": "ホテルの朝食はバイキングです。",
     "id": 26,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -248,7 +248,7 @@
     "explanation": "Often used as 'try again after failing'. (Set 2)",
     "example": "去年落ちた試験に今年リベンジする。",
     "id": 28,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -276,7 +276,7 @@
     "example": "ノートにシールを貼った。",
     "id": 31,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ホッチキス (hocchikisu)",
@@ -293,7 +293,7 @@
     "explanation": "Used to comfort someone: 'never mind'. (Set 2)",
     "example": "ミスしてもドンマイ！",
     "id": 33,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -330,7 +330,7 @@
     "example": "会社のイメージが良くなった。",
     "id": 37,
     "issued": false,
-    "completed": true
+    "completed": false
   },
   {
     "termA": "サラリーマン (sarariman)",
@@ -338,8 +338,8 @@
     "explanation": "Refers broadly to office workers. (Set 2)",
     "example": "父は都内でサラリーマンをしている。",
     "id": 38,
-    "issued": true,
-    "completed": false
+    "issued": false,
+    "completed": true
   },
   {
     "termA": "ペットボトル (petto botoru)",
@@ -410,8 +410,8 @@
     "explanation": "Usually means buffet/all-you-can-eat in Japan. (Set 3)",
     "example": "ホテルの朝食はバイキングです。",
     "id": 46,
-    "issued": true,
-    "completed": false
+    "issued": false,
+    "completed": true
   },
   {
     "termA": "カンニング (kanningu)",
@@ -455,8 +455,8 @@
     "explanation": "シール usually means sticker/label. (Set 3)",
     "example": "ノートにシールを貼った。",
     "id": 51,
-    "issued": true,
-    "completed": false
+    "issued": false,
+    "completed": true
   },
   {
     "termA": "ホッチキス (hocchikisu)",
@@ -482,7 +482,7 @@
     "explanation": "Often means trying something new. (Set 3)",
     "example": "新しい料理にチャレンジしてみる。",
     "id": 54,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -491,8 +491,8 @@
     "explanation": "Can mean ranking position in Japanese usage. (Set 3)",
     "example": "彼はチームのナンバー1だ。",
     "id": 55,
-    "issued": true,
-    "completed": false
+    "issued": false,
+    "completed": true
   },
   {
     "termA": "ハイテンション (haitenshon)",
@@ -500,7 +500,7 @@
     "explanation": "Means very energetic mood. (Set 3)",
     "example": "試合前はみんなハイテンションだった。",
     "id": 56,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -519,7 +519,9 @@
     "example": "父は都内でサラリーマンをしている。",
     "id": 58,
     "issued": false,
-    "completed": false
+    "completed": true,
+    "completedBy": "24F1002074",
+    "completedPR": 10790
   },
   {
     "termA": "ペットボトル (petto botoru)",
@@ -582,7 +584,7 @@
     "example": "ライブでテンションが上がった。",
     "id": 65,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "バイキング (baikingu)",
@@ -591,7 +593,7 @@
     "example": "ホテルの朝食はバイキングです。",
     "id": 66,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "カンニング (kanningu)",
@@ -617,7 +619,7 @@
     "explanation": "In Japanese it usually means complaint. (Set 4)",
     "example": "お客様からクレームが届いた。",
     "id": 69,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -636,7 +638,7 @@
     "example": "ノートにシールを貼った。",
     "id": 71,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ホッチキス (hocchikisu)",
@@ -662,7 +664,7 @@
     "explanation": "Often means trying something new. (Set 4)",
     "example": "新しい料理にチャレンジしてみる。",
     "id": 74,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -672,7 +674,7 @@
     "example": "彼はチームのナンバー1だ。",
     "id": 75,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ハイテンション (haitenshon)",
@@ -689,8 +691,8 @@
     "explanation": "Often means impression/public image. (Set 4)",
     "example": "会社のイメージが良くなった。",
     "id": 77,
-    "issued": false,
-    "completed": false
+    "issued": true,
+    "completed": true
   },
   {
     "termA": "サラリーマン (sarariman)",
@@ -699,7 +701,7 @@
     "example": "父は都内でサラリーマンをしている。",
     "id": 78,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ペットボトル (petto botoru)",
@@ -734,7 +736,7 @@
     "explanation": "マンション means apartment building in Japanese. (Set 5)",
     "example": "駅前のマンションに住んでいます。",
     "id": 82,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -762,7 +764,7 @@
     "example": "ライブでテンションが上がった。",
     "id": 85,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "バイキング (baikingu)",
@@ -771,7 +773,7 @@
     "example": "ホテルの朝食はバイキングです。",
     "id": 86,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "カンニング (kanningu)",
@@ -816,7 +818,7 @@
     "example": "ノートにシールを貼った。",
     "id": 91,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ホッチキス (hocchikisu)",
@@ -842,7 +844,7 @@
     "explanation": "Often means trying something new. (Set 5)",
     "example": "新しい料理にチャレンジしてみる。",
     "id": 94,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -852,7 +854,7 @@
     "example": "彼はチームのナンバー1だ。",
     "id": 95,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ハイテンション (haitenshon)",
@@ -869,7 +871,7 @@
     "explanation": "Often means impression/public image. (Set 5)",
     "example": "会社のイメージが良くなった。",
     "id": 97,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -878,8 +880,8 @@
     "explanation": "Refers broadly to office workers. (Set 5)",
     "example": "父は都内でサラリーマンをしている。",
     "id": 98,
-    "issued": true,
-    "completed": false
+    "issued": false,
+    "completed": true
   },
   {
     "termA": "ペットボトル (petto botoru)",
@@ -887,7 +889,7 @@
     "explanation": "Common term for plastic drink bottle. (Set 5)",
     "example": "ペットボトルは分別して捨てる。",
     "id": 99,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -942,7 +944,7 @@
     "example": "ライブでテンションが上がった。",
     "id": 105,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "バイキング (baikingu)",
@@ -951,7 +953,7 @@
     "example": "ホテルの朝食はバイキングです。",
     "id": 106,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "カンニング (kanningu)",
@@ -968,7 +970,7 @@
     "explanation": "Often used as 'try again after failing'. (Set 6)",
     "example": "去年落ちた試験に今年リベンジする。",
     "id": 108,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -996,7 +998,7 @@
     "example": "ノートにシールを貼った。",
     "id": 111,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ホッチキス (hocchikisu)",
@@ -1013,7 +1015,7 @@
     "explanation": "Used to comfort someone: 'never mind'. (Set 6)",
     "example": "ミスしてもドンマイ！",
     "id": 113,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -1032,7 +1034,7 @@
     "example": "彼はチームのナンバー1だ。",
     "id": 115,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ハイテンション (haitenshon)",
@@ -1040,7 +1042,7 @@
     "explanation": "Means very energetic mood. (Set 6)",
     "example": "試合前はみんなハイテンションだった。",
     "id": 116,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -1050,7 +1052,7 @@
     "example": "会社のイメージが良くなった。",
     "id": 117,
     "issued": false,
-    "completed": true
+    "completed": false
   },
   {
     "termA": "サラリーマン (sarariman)",
@@ -1058,8 +1060,8 @@
     "explanation": "Refers broadly to office workers. (Set 6)",
     "example": "父は都内でサラリーマンをしている。",
     "id": 118,
-    "issued": true,
-    "completed": false
+    "issued": false,
+    "completed": true
   },
   {
     "termA": "ペットボトル (petto botoru)",

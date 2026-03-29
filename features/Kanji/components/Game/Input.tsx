@@ -4,7 +4,7 @@ import { CircleCheck } from 'lucide-react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import useKanjiStore, { IKanjiObj } from '@/features/Kanji/store/useKanjiStore';
-import { useClick, useCorrect, useError } from '@/shared/hooks/useAudio';
+import { useClick, useCorrect, useError } from '@/shared/hooks/generic/useAudio';
 // import GameIntel from '@/shared/components/Game/GameIntel';
 import { useStopwatch } from 'react-timer-hook';
 import { useStatsStore } from '@/features/Progress';
@@ -16,6 +16,7 @@ import FuriganaText from '@/shared/components/text/FuriganaText';
 import { useCrazyModeTrigger } from '@/features/CrazyMode/hooks/useCrazyModeTrigger';
 import { getGlobalAdaptiveSelector } from '@/shared/lib/adaptiveSelection';
 import { GameBottomBar } from '@/shared/components/Game/GameBottomBar';
+import useClassicSessionStore from '@/shared/store/useClassicSessionStore';
 
 // Get the global adaptive selector for weighted character selection
 const adaptiveSelector = getGlobalAdaptiveSelector();
@@ -34,6 +35,7 @@ const KanjiInputGame = ({
   isHidden,
   isReverse = false,
 }: KanjiInputGameProps) => {
+  const logAttempt = useClassicSessionStore(state => state.logAttempt);
   // Get the current JLPT level from the Kanji store
   const selectedKanjiCollection = useKanjiStore(
     state => state.selectedKanjiCollection,
@@ -230,6 +232,18 @@ const KanjiInputGame = ({
         <CircleCheck className='inline text-(--main-color)' />
       </>,
     );
+    logAttempt({
+      questionId: correctChar,
+      questionPrompt: correctChar,
+      expectedAnswers: Array.isArray(targetChar)
+        ? targetChar.map(v => String(v))
+        : [String(targetChar)],
+      userAnswer: userInput,
+      inputKind: 'type',
+      isCorrect: true,
+      timeTakenMs: answerTimeMs,
+      extra: { isReverse },
+    });
   };
 
   const handleWrongAnswer = () => {
@@ -247,6 +261,17 @@ const KanjiInputGame = ({
     adaptiveSelector.updateCharacterWeight(correctChar, false);
     incrementWrongStreak();
     setBottomBarState('wrong');
+    logAttempt({
+      questionId: correctChar,
+      questionPrompt: correctChar,
+      expectedAnswers: Array.isArray(targetChar)
+        ? targetChar.map(v => String(v))
+        : [String(targetChar)],
+      userAnswer: inputValue.trim(),
+      inputKind: 'type',
+      isCorrect: false,
+      extra: { isReverse },
+    });
   };
 
   const generateNewCharacter = () => {

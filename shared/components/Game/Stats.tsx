@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import { useStatsDisplay } from '@/features/Progress';
 import { findHighestCounts } from '@/shared/lib/helperFunctions';
-import { useClick } from '@/shared/hooks/useAudio';
+import { useClick } from '@/shared/hooks/generic/useAudio';
 
 interface StatItem {
   label: string;
@@ -31,6 +31,38 @@ interface StatCardProps {
   title: string;
   stats: StatItem[];
 }
+
+const StatCard: React.FC<StatCardProps> = ({ title, stats }) => (
+  <div className='w-full rounded-lg border-(--border-color) bg-(--bg-color) p-6'>
+    <h3 className='mb-6 border-b-2 border-(--border-color) pb-3 text-2xl font-bold text-(--secondary-color)'>
+      {title}
+    </h3>
+    <div className='space-y-4'>
+      {stats.map(({ label, value, Icon }: StatItem, i: number) => (
+        <div
+          key={label}
+          className={clsx(
+            'flex items-center justify-between gap-4 pb-4',
+            i < stats.length - 1 && 'border-b border-(--border-color)/70',
+          )}
+        >
+          <div className='flex min-w-0 flex-1 items-center gap-2'>
+            <Icon
+              size={20}
+              className='flex-shrink-0 text-(--secondary-color)'
+            />
+            <span className='truncate text-sm text-(--text-color)/80 md:text-base'>
+              {label}
+            </span>
+          </div>
+          <span className='text-base font-semibold whitespace-nowrap md:text-lg'>
+            {value}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 const Stats: React.FC = () => {
   const { playClick } = useClick();
@@ -134,39 +166,6 @@ const Stats: React.FC = () => {
     if (value === Infinity) return '∞';
     return `${value}${suffix}`;
   };
-
-  const StatCard: React.FC<StatCardProps> = ({ title, stats }) => (
-    <div className='w-full rounded-lg border-(--border-color) bg-(--bg-color) p-6'>
-      <h3 className='mb-6 border-b-2 border-(--border-color) pb-3 text-2xl font-bold text-(--secondary-color)'>
-        {title}
-      </h3>
-      <div className='space-y-4'>
-        {stats.map(({ label, value, Icon }: StatItem, i: number) => (
-          <div
-            key={label}
-            className={clsx(
-              'flex items-center justify-between gap-4 pb-4',
-              i < stats.length - 1 &&
-                'border-b border-(--border-color)/70',
-            )}
-          >
-            <div className='flex min-w-0 flex-1 items-center gap-2'>
-              <Icon
-                size={20}
-                className='flex-shrink-0 text-(--secondary-color)'
-              />
-              <span className='truncate text-sm text-(--text-color)/80 md:text-base'>
-                {label}
-              </span>
-            </div>
-            <span className='text-base font-semibold whitespace-nowrap md:text-lg'>
-              {value}
-            </span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
 
   const generalStats: StatItem[] = [
     { label: 'Training Time', value: stats.timeDisplay, Icon: Hourglass },

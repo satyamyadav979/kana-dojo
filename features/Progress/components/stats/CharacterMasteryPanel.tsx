@@ -282,11 +282,11 @@ export default function CharacterMasteryPanel({
           </div>
 
           {/* Pill-style filter tabs with smooth sliding animation */}
-          <div className='flex gap-1 rounded-[22px] bg-(--background-color) p-1.5'>
+          <div className='flex w-full gap-0 rounded-2xl bg-(--background-color) p-0 sm:w-auto'>
             {CONTENT_FILTERS.map(filter => {
               const isSelected = contentFilter === filter.value;
               return (
-                <div key={filter.value} className='relative'>
+                <div key={filter.value} className='relative flex-1'>
                   {/* Smooth sliding background indicator */}
                   {isSelected && (
                     <motion.div
@@ -302,7 +302,7 @@ export default function CharacterMasteryPanel({
                   <button
                     onClick={() => setContentFilter(filter.value)}
                     className={cn(
-                      'relative z-10 cursor-pointer rounded-2xl px-4 pt-2 pb-4 text-sm font-semibold transition-colors duration-300',
+                      'relative z-10 w-full cursor-pointer rounded-2xl px-4 pt-2 pb-4 text-sm font-semibold transition-colors duration-300',
                       isSelected
                         ? 'text-(--background-color)'
                         : 'text-(--secondary-color)/70 hover:text-(--main-color)',

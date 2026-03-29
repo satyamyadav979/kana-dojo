@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { toHiragana } from 'wanakana';
 import { IVocabObj } from '@/features/Vocabulary/store/useVocabStore';
-import { useClick, useCorrect, useError } from '@/shared/hooks/useAudio';
+import { useClick, useCorrect, useError } from '@/shared/hooks/generic/useAudio';
 import { useStopwatch } from 'react-timer-hook';
 import { useGameStats, useStatsDisplay } from '@/features/Progress';
 import Stars from '@/shared/components/Game/Stars';
@@ -14,6 +14,7 @@ import FuriganaText from '@/shared/components/text/FuriganaText';
 import { useCrazyModeTrigger } from '@/features/CrazyMode/hooks/useCrazyModeTrigger';
 import { getGlobalAdaptiveSelector } from '@/shared/lib/adaptiveSelection';
 import { GameBottomBar } from '@/shared/components/Game/GameBottomBar';
+import useClassicSessionStore from '@/shared/store/useClassicSessionStore';
 
 // Get the global adaptive selector for weighted character selection
 const adaptiveSelector = getGlobalAdaptiveSelector();
@@ -32,6 +33,7 @@ const VocabInputGame = ({
   isHidden,
   isReverse = false,
 }: VocabInputGameProps) => {
+  const logAttempt = useClassicSessionStore(state => state.logAttempt);
   const { score, setScore } = useStatsDisplay();
   const gameStats = useGameStats();
 
@@ -196,6 +198,18 @@ const VocabInputGame = ({
     adaptiveSelector.updateCharacterWeight(correctChar, true);
     setBottomBarState('correct');
     setDisplayAnswerSummary(true);
+    logAttempt({
+      questionId: correctChar,
+      questionPrompt: correctChar,
+      expectedAnswers: Array.isArray(targetChar)
+        ? targetChar.map(v => String(v))
+        : [String(targetChar)],
+      userAnswer: inputValue.trim(),
+      inputKind: 'type',
+      isCorrect: true,
+      timeTakenMs: answerTimeMs,
+      extra: { isReverse, quizType },
+    });
   };
 
   const handleWrongAnswer = () => {
@@ -219,6 +233,17 @@ const VocabInputGame = ({
     triggerCrazyMode();
     adaptiveSelector.updateCharacterWeight(correctChar, false);
     setBottomBarState('wrong');
+    logAttempt({
+      questionId: correctChar,
+      questionPrompt: correctChar,
+      expectedAnswers: Array.isArray(targetChar)
+        ? targetChar.map(v => String(v))
+        : [String(targetChar)],
+      userAnswer: inputValue.trim(),
+      inputKind: 'type',
+      isCorrect: false,
+      extra: { isReverse, quizType },
+    });
   };
 
   const handleEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
