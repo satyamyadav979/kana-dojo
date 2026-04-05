@@ -26,7 +26,7 @@ import {
   BottomBarState,
   gameContentVariants,
   useTilesModeActionKey,
-} from '@/shared/components/Game/TilesModeShared';
+} from '@/shared/components/Game/tilesModeShared';
 import TilesModeGrid from '@/shared/components/Game/TilesModeGrid';
 import useClassicSessionStore from '@/shared/store/useClassicSessionStore';
 
