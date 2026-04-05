@@ -24,6 +24,7 @@ const NAMESPACES = [
   'welcome',
   'experiments',
   'legal',
+  'kanaChart',
 ] as const;
 
 // Cache for loaded messages to avoid re-importing in dev

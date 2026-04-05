@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+@import '../shared/styles/animations.css' layer(utilities);
 @tailwind utilities;
 
 @theme {
@@ -12,6 +13,21 @@ body {
   overscroll-behavior: none; /* Prevents zooming on iOS */
   font-family: 'Noto Sans JP', sans-serif;
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .theCage {

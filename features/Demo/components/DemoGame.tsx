@@ -8,7 +8,7 @@ import {
 } from 'framer-motion';
 import clsx from 'clsx';
 import { Random } from 'random-js';
-import { useCorrect, useError, useClick } from '@/shared/hooks/useAudio';
+import { useCorrect, useError, useClick } from '@/shared/hooks/generic/useAudio';
 import Stars from '@/shared/components/Game/Stars';
 import { useCrazyModeTrigger } from '@/features/CrazyMode/hooks/useCrazyModeTrigger';
 import { useStopwatch } from 'react-timer-hook';
@@ -279,7 +279,7 @@ interface StatItemProps {
 const StatItem = ({ icon: Icon, value }: StatItemProps) => (
   <p className='flex flex-row items-center gap-0.75 text-xl sm:gap-1'>
     <Icon />
-    <span>{value}</span>
+    <span className='text-(--main-color)'>{value}</span>
   </p>
 );
 

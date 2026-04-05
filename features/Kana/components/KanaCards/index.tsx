@@ -2,7 +2,7 @@
 import { Fragment, useState } from 'react';
 import clsx from 'clsx';
 import Subset from './Subset';
-import { useClick } from '@/shared/hooks/useAudio';
+import { useClick } from '@/shared/hooks/generic/useAudio';
 import { cardBorderStyles } from '@/shared/lib/styles';
 import { ChevronUp } from 'lucide-react';
 
@@ -127,8 +127,8 @@ const KanaCards = ({ filter = 'all' }: { filter?: KanaCardsFilter }) => {
   const chevronClasses = (hidden: boolean) =>
     clsx(
       'duration-300 text-(--border-color)',
-      'max-md:group-active:text-(--main-color)',
-      'md:group-hover:text-(--main-color)',
+      'max-md:group-active:text-(--secondary-color)',
+      'md:group-hover:text-(--secondary-color)',
       hidden && 'rotate-180',
     );
 
