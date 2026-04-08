@@ -1,10 +1,13 @@
 'use client';
 
-import { Link } from '@/core/i18n/routing';
+import { Link, usePathname } from '@/core/i18n/routing';
 import { useClick } from '@/shared/hooks/generic/useAudio';
 import { cn } from '@/shared/lib/utils';
 import clsx from 'clsx';
-import { Sparkles, type LucideIcon } from 'lucide-react';
+import { Sparkles, House, Star, type LucideIcon } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { removeLocaleFromPath } from '@/shared/lib/pathUtils';
+import { motion } from 'framer-motion';
 
 type NavItem = {
   name: string;
@@ -15,6 +18,11 @@ type NavItem = {
 
 export default function TopBar() {
   const { playClick } = useClick();
+  const pathname = usePathname();
+  const pathWithoutLocale = removeLocaleFromPath(pathname);
+
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   const navItems: NavItem[] = [
     { name: 'Kana', href: '/kana', charIcon: 'あ' },
@@ -23,69 +31,166 @@ export default function TopBar() {
     { name: 'Preferences', href: '/preferences', icon: Sparkles },
   ];
 
-  return (
-    <nav className='fixed top-0 right-0 left-0 z-50 border-b border-(--border-color) bg-(--background-color)'>
-      <div className='flex h-20 items-center justify-between px-4 md:px-6'>
-        {/* Logo */}
-        <Link
-          href='/'
-          onClick={() => playClick()}
-          className='flex items-center gap-3 text-lg font-medium text-(--main-color) transition-opacity hover:opacity-80'
-        >
-          <span className='text-3xl'>KanaDojo</span>
-          <span className='text-3xl text-(--secondary-color)'>かな道場</span>
-        </Link>
+  const mobileNavItems: NavItem[] = [
+    { name: 'Home', href: '/', icon: House },
+    { name: 'Progress', href: '/progress', icon: Star },
+    { name: 'Kana', href: '/kana', charIcon: 'あ' },
+    { name: 'Vocab', href: '/vocabulary', charIcon: '語' },
+    { name: 'Kanji', href: '/kanji', charIcon: '字' },
+    { name: 'Preferences', href: '/preferences', icon: Sparkles },
+  ];
 
-        {/* Navigation Links */}
-        <div className='items-center gap-1 md:flex'>
-          {navItems.map((item, index) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={() => playClick()}
-              className={clsx(
-                'flex items-center gap-2 rounded-lg px-3 py-2 text-base font-medium transition-colors',
-                'text-(--secondary-color) hover:bg-(--border-color) hover:text-(--main-color)',
-              )}
-            >
-              {item.charIcon ? (
-                <span
-                  className={clsx(
-                    'inline-flex h-8 w-8 items-center justify-center rounded-xl text-lg',
-                    'bg-(--secondary-color) text-(--background-color)',
-                    'border-b-4 border-(--secondary-color-accent)',
-                    'transition-all duration-200',
-                    'motion-safe:animate-float',
-                    index === 0 &&
-                      '[--float-distance:-4px] [animation-delay:0ms]',
-                    index === 1 &&
-                      '[--float-distance:-3px] [animation-delay:800ms]',
-                    index === 2 &&
-                      '[--float-distance:-5px] [animation-delay:1600ms]',
-                  )}
-                >
-                  {item.charIcon}
-                </span>
-              ) : (
-                item.icon && (
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Show/hide based on scroll direction
+      if (currentScrollY < 10) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        // Scrolling down & past threshold
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY.current) {
+        // Scrolling up
+        setIsVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isActive = (href: string) => {
+    if (href === '/kana') {
+      return (
+        pathWithoutLocale === href || pathWithoutLocale.startsWith('/kana/')
+      );
+    }
+    return pathWithoutLocale === href;
+  };
+
+  return (
+    <>
+      {/* Desktop Top Bar */}
+      <motion.nav
+        initial={{ y: 0 }}
+        animate={{ y: isVisible ? 0 : -100 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className='fixed top-0 right-0 left-0 z-50 border-b-2 border-dashed border-(--border-color) bg-(--background-color) max-lg:hidden'
+      >
+        <div className='flex h-20 items-center justify-between px-4 md:px-6'>
+          {/* Logo */}
+          <Link
+            href='/'
+            onClick={() => playClick()}
+            className='flex items-center gap-3 text-lg font-medium text-(--main-color) transition-opacity hover:opacity-80'
+          >
+            <span className='text-3xl'>KanaDojo</span>
+            <span className='text-3xl text-(--secondary-color)'>かな道場</span>
+          </Link>
+
+          {/* Navigation Links */}
+          <div className='flex items-center gap-1'>
+            {navItems.map((item, index) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => playClick()}
+                className={clsx(
+                  'flex items-center gap-2 rounded-lg px-4 py-2.5 text-base font-medium transition-colors',
+                  'text-(--secondary-color) hover:bg-(--card-color) hover:text-(--main-color)',
+                )}
+              >
+                {item.charIcon ? (
                   <span
                     className={clsx(
-                      'inline-flex h-8 w-8 items-center justify-center rounded-xl',
-                      'bg-(--main-color) text-(--background-color)',
-                      'border-b-4 border-(--main-color-accent)',
+                      'inline-flex h-9 w-9 items-center justify-center rounded-xl text-lg',
+                      'bg-(--secondary-color) text-(--background-color)',
+                      'border-b-4 border-(--secondary-color-accent)',
                       'transition-all duration-200',
-                      'motion-safe:animate-float [--float-distance:-4px] [animation-delay:400ms]',
+                      'motion-safe:animate-float [--float-distance:-3px]',
+                      index === 0 && '[animation-delay:0ms]',
+                      index === 1 && '[animation-delay:800ms]',
+                      index === 2 && '[animation-delay:1600ms]',
                     )}
                   >
-                    <item.icon className='size-4' />
+                    {item.charIcon}
                   </span>
-                )
-              )}
-              <span className={cn('text-(--main-color)')}>{item.name}</span>
-            </Link>
-          ))}
+                ) : (
+                  item.icon && (
+                    <span
+                      className={clsx(
+                        'inline-flex h-9 w-9 items-center justify-center rounded-xl',
+                        'bg-(--secondary-color) text-(--background-color)',
+                        'border-b-4 border-(--secondary-color-accent)',
+                        'transition-all duration-200',
+                        'motion-safe:animate-float [--float-distance:-3px] [animation-delay:2400ms]',
+                      )}
+                    >
+                      <item.icon className='size-4' />
+                    </span>
+                  )
+                )}
+                <span className={cn('text-xl text-(--main-color)')}>
+                  {item.name}
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
-      </div>
-    </nav>
+      </motion.nav>
+
+      {/* Mobile Bottom Bar */}
+      <motion.aside
+        initial={{ y: 0 }}
+        animate={{ y: isVisible ? 0 : 100 }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
+        className='fixed bottom-0 z-50 flex w-full items-center justify-evenly border-t-2 border-(--border-color) bg-(--card-color) py-2 lg:hidden'
+      >
+        {mobileNavItems.map(item => {
+          const Icon = item.icon;
+          const active = isActive(item.href);
+
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              prefetch
+              onClick={playClick}
+              className={clsx(
+                'relative flex items-center justify-center rounded-2xl px-3 py-2 text-2xl transition-all duration-250',
+                active
+                  ? 'bg-(--border-color) text-(--main-color)'
+                  : 'text-(--secondary-color)',
+              )}
+            >
+              {active && (
+                <motion.div
+                  layoutId='mobile-nav-indicator'
+                  className='motion-safe:animate-float absolute inset-0 rounded-xl border-b-6 border-(--main-color-accent) bg-(--main-color) [--float-distance:-3.5px]'
+                  transition={{
+                    type: 'spring',
+                    stiffness: 300,
+                    damping: 30,
+                  }}
+                />
+              )}
+              <span
+                className={clsx(
+                  'relative z-10',
+                  active && 'text-(--background-color)',
+                )}
+              >
+                {item.charIcon
+                  ? item.charIcon
+                  : Icon && <Icon className='shrink-0' />}
+              </span>
+            </Link>
+          );
+        })}
+      </motion.aside>
+    </>
   );
 }
