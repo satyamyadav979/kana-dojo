@@ -69,7 +69,7 @@ export default async function JapaneseToEnglishPage(_: PageProps) {
     ['電車が遅れています', 'The train is delayed', 'Densha ga okurete imasu'],
     [
       '明日の予定を教えてください',
-      'Please tell me tomorrow's plan',
+      "Please tell me tomorrow's plan",
       'Ashita no yotei o oshiete kudasai',
     ],
     ['今何時ですか', 'What time is it now?', 'Ima nanji desu ka'],
