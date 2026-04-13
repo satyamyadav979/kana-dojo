@@ -1,8 +1,7 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import clsx from 'clsx';
-import { Link } from '@/core/i18n/routing';
-import { useClick } from '@/shared/hooks/useAudio';
+import { useClick } from '@/shared/hooks/generic/useAudio';
 import { useStopwatch } from 'react-timer-hook';
 import { useStatsDisplay } from '@/features/Progress';
 import {
@@ -25,6 +24,9 @@ const GAME_MODE_ICONS: Record<
   { icon: LucideIcon; className?: string }
 > = {
   pick: { icon: MousePointerClick },
+  mcq: { icon: MousePointerClick },
+  'reverse-mcq': { icon: MousePointerClick, className: 'scale-x-[-1]' },
+  // Legacy compatibility alias for older persisted/internal mode values.
   'anti-pick': { icon: MousePointerClick, className: 'scale-x-[-1]' },
   type: { icon: Keyboard },
   'anti-type': { icon: Keyboard, className: 'scale-y-[-1]' },
@@ -44,13 +46,13 @@ const StatItem = ({ icon: Icon, value }: StatItemProps) => (
 
 interface ReturnProps {
   isHidden: boolean;
-  href: string;
   gameMode: string;
+  onQuit: () => void;
 }
 
-const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
+const Return = ({ isHidden, gameMode, onQuit }: ReturnProps) => {
   const totalTimeStopwatch = useStopwatch({ autoStart: false });
-  const buttonRef = useRef<HTMLAnchorElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   const stats = useStatsDisplay();
   const saveSession = stats.saveSession;
@@ -66,6 +68,9 @@ const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
   // Start stopwatch when component becomes visible
   useEffect(() => {
     if (!isHidden) totalTimeStopwatch.start();
+    // `totalTimeStopwatch` object identity is not stable across renders.
+    // Including it in deps can cause a render -> start -> render loop.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isHidden]);
 
   // Keyboard shortcuts
@@ -82,6 +87,7 @@ const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
     totalTimeStopwatch.pause();
     setNewTotalMilliseconds(totalTimeStopwatch.totalMilliseconds);
     saveSession();
+    onQuit();
   };
 
   const handleShowStats = () => {
@@ -104,17 +110,17 @@ const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
     >
       {/* Header with exit and progress */}
       <div className='flex w-full flex-row items-center justify-between gap-3 md:gap-4'>
-        <Link href={href} ref={buttonRef} onClick={handleExit}>
+        <button type='button' ref={buttonRef} onClick={handleExit}>
           <X
             size={32}
             className='text-(--border-color) duration-250 hover:scale-125 hover:cursor-pointer hover:text-(--secondary-color)'
           />
-        </Link>
+        </button>
         <ProgressBar />
         {/* Stats button - visible only on small screens */}
         <ActionButton
           borderRadius='xl'
-          className='w-auto px-3 py-1 text-xl sm:hidden'
+          className='w-auto px-3 py-1 text-xl sm:hidden animate-float [--float-distance:-2px]'
           onClick={handleShowStats}
         >
           <ChartSpline size={24} />
@@ -146,7 +152,7 @@ const Return = ({ isHidden, href, gameMode }: ReturnProps) => {
           <ActionButton
             borderRadius='3xl'
             borderBottomThickness={8}
-            className='hidden w-auto p-2 text-xl sm:flex md:px-6'
+            className='hidden w-auto p-2 text-xl sm:flex md:px-6 animate-float [--float-distance:-6px]'
             onClick={handleShowStats}
           >
             <ChartSpline size={24} />
