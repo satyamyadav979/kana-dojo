@@ -452,5 +452,16 @@
     "Kissa"
   ],
   "correctIndex": 1
-}
+},
+  {
+    "question": "Which traditional Japanese art involves arranging flowers in a highly structured and aesthetic way?",
+  "difficulty": "medium",
+  "answers": [
+    "Origami",
+    "Ikebana",
+    "Calligraphy",
+    "Bonsai"
+  ],
+  "correctIndex": 1
+  }
 ]
