@@ -1,8 +1,8 @@
 'use client';
 
 import { useMemo } from 'react';
+import type { IVocabObj } from '@/entities/vocabulary';
 import useVocabStore from '../store/useVocabStore';
-import type { IVocabObj } from '../store/useVocabStore';
 
 /**
  * Vocabulary Selection Facade - Public API for selection state

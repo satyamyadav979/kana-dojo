@@ -6,7 +6,7 @@
     "game": "The Prince of Tennis: Sweat & Tears 2",
     "character": "Ryoma Echizen",
     "id": 1,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -26,7 +26,7 @@
     "game": "Tales of the Abyss",
     "character": "Luke fon Fabre",
     "id": 3,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -66,7 +66,7 @@
     "game": "Dragon Quest series",
     "character": "Recurring command voice",
     "id": 7,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -76,7 +76,7 @@
     "game": "Kingdom Hearts series (JP dub)",
     "character": "Sora",
     "id": 8,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -96,7 +96,7 @@
     "game": "Dragon Quest XI",
     "character": "Hero / party lines",
     "id": 10,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -106,7 +106,7 @@
     "game": "Monster Hunter series",
     "character": "Guild Handler lines",
     "id": 11,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -316,7 +316,7 @@
     "game": "Pokemon series",
     "character": "Rival characters",
     "id": 32,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -516,7 +516,7 @@
     "game": "Pokemon series",
     "character": "Rival characters",
     "id": 52,
-    "issued": true,
+    "issued": false,
     "completed": false
   },
   {
@@ -746,7 +746,7 @@
     "game": "Fire Emblem series",
     "character": "Various protagonists",
     "id": 75,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -756,7 +756,7 @@
     "game": "Onimusha series",
     "character": "Nobunaga Oda",
     "id": 76,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -796,7 +796,7 @@
     "game": "Samurai game proverb line",
     "character": "Musashi reference",
     "id": 80,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -846,7 +846,7 @@
     "game": "Danganronpa series",
     "character": "Makoto Naegi",
     "id": 85,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -856,7 +856,7 @@
     "game": "JoJo’s Bizarre Adventure: All-Star Battle",
     "character": "Giorno Giovanna",
     "id": 86,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -976,7 +976,7 @@
     "game": "The Legend of Zelda: Breath of the Wild (JP)",
     "character": "Revali",
     "id": 98,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -1006,7 +1006,7 @@
     "game": "The Prince of Tennis: Sweat & Tears 2",
     "character": "Ryoma Echizen",
     "id": 101,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -1106,7 +1106,7 @@
     "game": "Monster Hunter series",
     "character": "Guild Handler lines",
     "id": 111,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -1126,7 +1126,7 @@
     "game": "Final Fantasy Type-0",
     "character": "Class Zero",
     "id": 113,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
@@ -1146,7 +1146,7 @@
     "game": "Fire Emblem series",
     "character": "Various protagonists",
     "id": 115,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {

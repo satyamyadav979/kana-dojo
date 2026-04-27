@@ -1,8 +1,8 @@
 'use client';
 
 import { useMemo } from 'react';
+import type { IKanjiObj } from '@/entities/kanji';
 import useKanjiStore from '../store/useKanjiStore';
-import type { IKanjiObj } from '../store/useKanjiStore';
 
 /**
  * Kanji Selection Facade - Public API for selection state

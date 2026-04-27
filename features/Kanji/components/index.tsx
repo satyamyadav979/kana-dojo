@@ -2,7 +2,6 @@
 
 import { useCallback, useMemo } from 'react';
 import useKanjiStore from '@/features/Kanji/store/useKanjiStore';
-import { useStatsStore } from '@/features/Progress';
 import KanjiSetDictionary from '@/features/Kanji/components/SetDictionary';
 
 import type { IKanjiObj } from '@/features/Kanji/store/useKanjiStore';
@@ -10,14 +9,17 @@ import {
   kanjiDataService,
   KanjiLevel,
 } from '@/features/Kanji/services/kanjiDataService';
-import LevelSetCards from '@/shared/components/Menu/LevelSetCards';
+import LevelSetCards from '@/shared/ui-composite/Menu/LevelSetCards';
+import useSetProgressHydration from '@/features/Progress/hooks/useSetProgress';
+import useSetProgressStore from '@/features/Progress/store/useSetProgressStore';
+import { calculateKanjiSetProgress } from '@/features/Progress/lib/setProgress';
 import {
   N1KanjiLength,
   N2KanjiLength,
   N3KanjiLength,
   N4KanjiLength,
   N5KanjiLength,
-} from '@/shared/lib/unitSets';
+} from '@/shared/utils/unitSets';
 
 const levelOrder: KanjiLevel[] = ['n5', 'n4', 'n3', 'n2', 'n1'];
 const KANJI_PER_SET = 10;
@@ -44,8 +46,6 @@ const KanjiCards = () => {
   const setCollapsedRowsForUnit = useKanjiStore(
     state => state.setCollapsedRowsForUnit,
   );
-  const allTimeStats = useStatsStore(state => state.allTimeStats);
-
   // Get collapsed rows for current unit from store
   const collapsedRows = useMemo(
     () => collapsedRowsByUnit[selectedKanjiCollectionName] || [],
@@ -72,6 +72,17 @@ const KanjiCards = () => {
     (level: KanjiLevel) => KANJI_LENGTHS[level],
     [],
   );
+  useSetProgressHydration();
+  const kanjiProgress = useSetProgressStore(state => state.data.kanji);
+  const getSetProgress = useCallback(
+    (items: IKanjiObj[]) =>
+      calculateKanjiSetProgress(
+        items.map(item => ({
+          correct: kanjiProgress[item.kanjiChar]?.correct ?? 0,
+        })),
+      ),
+    [kanjiProgress],
+  );
 
   return (
     <LevelSetCards<KanjiLevel, IKanjiObj>
@@ -90,19 +101,12 @@ const KanjiCards = () => {
       toggleItems={items => addKanjiObjs(items)}
       collapsedRows={collapsedRows}
       setCollapsedRows={setCollapsedRows}
-      masteryByKey={allTimeStats.characterMastery}
-      getMasteryKey={item => item.kanjiChar}
       renderSetDictionary={items => <KanjiSetDictionary words={items} />}
+      getSetProgress={getSetProgress}
       loadingText='Loading kanji sets...'
-      tipText={
-        <>
-          💡 <strong>Tip:</strong> Complete some practice sessions to unlock the
-          &ldquo;Hide Mastered Sets&rdquo; filter. Sets become mastered when you
-          achieve 90%+ accuracy with 10+ attempts per character.
-        </>
-      }
     />
   );
 };
 
 export default KanjiCards;
+

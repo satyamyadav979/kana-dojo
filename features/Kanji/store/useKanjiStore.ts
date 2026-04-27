@@ -1,12 +1,7 @@
 import { create } from 'zustand';
+import type { IKanjiObj } from '@/entities/kanji';
 
-export interface IKanjiObj {
-  id: number;
-  kanjiChar: string;
-  onyomi: string[];
-  kunyomi: string[];
-  meanings: string[];
-}
+export type { IKanjiObj } from '@/entities/kanji';
 
 interface IKanjiState {
   selectedGameModeKanji: string;

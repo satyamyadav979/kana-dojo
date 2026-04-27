@@ -1,11 +1,11 @@
 'use client';
 
 import clsx from 'clsx';
-import { cardBorderStyles } from '@/shared/lib/styles';
+import { cardBorderStyles } from '@/shared/utils/styles';
 import type { IKanjiObj } from '@/features/Kanji/store/useKanjiStore';
 import { useThemePreferences } from '@/features/Preferences';
-import FuriganaText from '@/shared/components/text/FuriganaText';
-import { useClick } from '@/shared/hooks/useAudio';
+import FuriganaText from '@/shared/ui-composite/text/FuriganaText';
+import { useClick } from '@/shared/hooks/generic/useAudio';
 import { memo } from 'react';
 
 type KanjiSetDictionaryProps = {
@@ -146,3 +146,4 @@ const KanjiSetDictionary = memo(function KanjiSetDictionary({
 });
 
 export default KanjiSetDictionary;
+

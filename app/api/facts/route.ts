@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getAllFacts } from '@/shared/lib/server/facts';
+import { getAllFacts } from '@/shared/infra/server/facts';
 
 export async function GET() {
   try {
@@ -12,6 +12,9 @@ export async function GET() {
     return response;
   } catch (error) {
     console.error('Failed to load Japan facts:', error);
-    return NextResponse.json({ error: 'Failed to load facts' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Failed to load facts' },
+      { status: 500 },
+    );
   }
 }

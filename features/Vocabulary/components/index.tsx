@@ -2,20 +2,22 @@
 
 import { useCallback, useMemo } from 'react';
 import useVocabStore from '@/features/Vocabulary/store/useVocabStore';
-import { useStatsStore } from '@/features/Progress';
 import VocabSetDictionary from '@/features/Vocabulary/components/SetDictionary';
 import {
   vocabDataService,
   VocabLevel,
 } from '@/features/Vocabulary/services/vocabDataService';
-import LevelSetCards from '@/shared/components/Menu/LevelSetCards';
+import LevelSetCards from '@/shared/ui-composite/Menu/LevelSetCards';
+import useSetProgressHydration from '@/features/Progress/hooks/useSetProgress';
+import useSetProgressStore from '@/features/Progress/store/useSetProgressStore';
+import { calculateVocabularySetProgress } from '@/features/Progress/lib/setProgress';
 import {
   N1VocabLength,
   N2VocabLength,
   N3VocabLength,
   N4VocabLength,
   N5VocabLength,
-} from '@/shared/lib/unitSets';
+} from '@/shared/utils/unitSets';
 
 import type { IWord } from '@/shared/types/interfaces';
 
@@ -52,8 +54,6 @@ const VocabCards = () => {
   const setCollapsedRowsForUnit = useVocabStore(
     state => state.setCollapsedRowsForUnit,
   );
-  const allTimeStats = useStatsStore(state => state.allTimeStats);
-
   // Get collapsed rows for current unit from store
   const collapsedRows = useMemo(
     () => collapsedRowsByUnit[selectedVocabCollectionName] || [],
@@ -80,6 +80,20 @@ const VocabCards = () => {
     (level: VocabLevel) => VOCAB_LENGTHS[level],
     [],
   );
+  useSetProgressHydration();
+  const vocabularyProgress = useSetProgressStore(
+    state => state.data.vocabulary,
+  );
+  const getSetProgress = useCallback(
+    (items: IWord[]) =>
+      calculateVocabularySetProgress(
+        items.map(item => ({
+          meaningCorrect: vocabularyProgress[item.word]?.meaningCorrect ?? 0,
+          readingCorrect: vocabularyProgress[item.word]?.readingCorrect ?? 0,
+        })),
+      ),
+    [vocabularyProgress],
+  );
 
   return (
     <LevelSetCards<VocabLevel, IWord>
@@ -98,19 +112,12 @@ const VocabCards = () => {
       toggleItems={items => addWordObjs(items)}
       collapsedRows={collapsedRows}
       setCollapsedRows={setCollapsedRows}
-      masteryByKey={allTimeStats.characterMastery}
-      getMasteryKey={item => item.word}
       renderSetDictionary={items => <VocabSetDictionary words={items} />}
+      getSetProgress={getSetProgress}
       loadingText='Loading vocabulary sets...'
-      tipText={
-        <>
-          💡 <strong>Tip:</strong> Complete some practice sessions to unlock the
-          &apos;Hide Mastered Sets&apos; filter. Sets become mastered when you
-          achieve 90%+ accuracy with 10+ attempts per word.
-        </>
-      }
     />
   );
 };
 
 export default VocabCards;
+
